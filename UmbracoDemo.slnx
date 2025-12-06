@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="UmbracoDemoApi/UmbracoDemoApi.csproj" />
+  <Project Path="UmbracoDemoApp/UmbracoDemoApp.csproj" />
+  <Project Path="UmbracoDemoShared/UmbracoDemoShared.csproj" Id="add580e6-35f3-4023-a482-44b6ae445fa6" />
+</Solution>
