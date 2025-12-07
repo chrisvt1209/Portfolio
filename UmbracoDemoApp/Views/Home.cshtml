@@ -1,5 +1,12 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
-@{
-	Layout = null;
-}
+@using UmbracoDemoApp.Models.Umbraco
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
+
+<div class="text-center">
+    <h1>@Model.Title</h1>
+    <p>@Model.Description</p>
+    @if (Model.Image is not null)
+    {
+        <img src="@Model.Image.Url()" />
+    }
+</div>

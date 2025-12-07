@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Portfolio</title>
+        <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/styles.css" />
+        <link rel="stylesheet" href="~/bootstrap/bootstrap-icons/font/bootstrap-icons.css" />
+        <link rel="stylesheet" href="~/bootstrap/bootstrap-icons/font/bootstrap-icons.min.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">CVT</a>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-center">
+                        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nav 1</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nav 2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nav 3</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted text-center">
+            <div class="container">
+                &copy; 2025 - Chris van Tiggelen
+            </div>
+        </footer>
+        <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/scripts/script.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>
