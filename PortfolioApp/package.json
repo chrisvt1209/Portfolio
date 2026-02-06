@@ -1,0 +1,21 @@
+{
+  "name": "Chris",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build.debug.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node build.debug.js",
+    "prod": "node build.prod.js"
+  },
+  "author": "Tambien",
+  "dependencies": {
+    "bootstrap": "5.3.8",
+    "date-fns": "*"
+  },
+  "devDependencies": {
+    "esbuild": "0.27.3",
+    "esbuild-sass-plugin": "3.6.0"
+  }
+}

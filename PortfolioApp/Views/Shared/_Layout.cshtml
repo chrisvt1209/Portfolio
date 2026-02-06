@@ -2,64 +2,18 @@
 @using Umbraco.Extensions
 @inject Umbraco.Cms.Web.Common.UmbracoHelper Umbraco
 
-@{
-    var home = Umbraco.ContentAtRoot().FirstOrDefault();
-    var navItems = home?.Children()?.Where(x => x.IsPublished()) ?? Enumerable.Empty<IPublishedContent>();
-    var currentPath = Context.Request.Path.Value?.TrimEnd('/') ?? string.Empty;
-}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Portfolio</title>
-        <link rel="stylesheet" href="~/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="~/css/styles.css" />
-        <link rel="stylesheet" href="~/bootstrap/bootstrap-icons/font/bootstrap-icons.css" />
-        <link rel="stylesheet" href="~/bootstrap/bootstrap-icons/font/bootstrap-icons.min.css" />
     </head>
     <body>
-        <header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="@home!.Url()">CVT</a>
-                    <div class="navbar-collapse collapse justify-content-center">
-                        <ul class="navbar-nav mb-2 mb-md-0">
-                            @foreach (var item in navItems)
-                            {
-                                var itemUrl = item.Url();
-
-                                var itemPath = new Uri(itemUrl, UriKind.RelativeOrAbsolute).IsAbsoluteUri
-                                    ? new Uri(itemUrl).AbsolutePath.TrimEnd('/')
-                                    : itemUrl.TrimEnd('/');
-
-                                var activeClass = string.Equals(currentPath, itemPath, StringComparison.OrdinalIgnoreCase)
-                                    ? "active"
-                                    : string.Empty;
-
-                                <li class="nav-item">
-                                    <a class="nav-link" @activeClass href="@itemUrl">@item.Name</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
-        </div>
-
-        <footer class="border-top footer text-muted text-center">
-            <div class="container">
-                &copy; 2025 - Chris van Tiggelen
-            </div>
-        </footer>
-        <script src="~/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        
+        @RenderBody()
+        
         <script src="~/scripts/script.js" asp-append-version="true"></script>
         @await RenderSectionAsync("Scripts", required: false)
     </body>

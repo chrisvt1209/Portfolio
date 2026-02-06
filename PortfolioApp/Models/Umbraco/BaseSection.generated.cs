@@ -18,9 +18,24 @@ using Umbraco.Extensions;
 
 namespace PortfolioApp.Models.Umbraco
 {
+	// Mixin Content Type with alias "baseSection"
+	/// <summary>BaseSection</summary>
+	public partial interface IBaseSection : IPublishedElement
+	{
+		/// <summary>Beschrijving</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription { get; }
+
+		/// <summary>Titel</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string SectionTitle { get; }
+	}
+
 	/// <summary>BaseSection</summary>
 	[PublishedModel("baseSection")]
-	public partial class BaseSection : PublishedElementModel
+	public partial class BaseSection : PublishedElementModel, IBaseSection
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +63,31 @@ namespace PortfolioApp.Models.Umbraco
 		}
 
 		// properties
+
+		///<summary>
+		/// Beschrijving
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription => GetSectionDescription(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Beschrijving</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetSectionDescription(IBaseSection that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "sectionDescription");
+
+		///<summary>
+		/// Titel
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionTitle")]
+		public virtual string SectionTitle => GetSectionTitle(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Titel</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetSectionTitle(IBaseSection that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "sectionTitle");
 	}
 }

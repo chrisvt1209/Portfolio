@@ -20,7 +20,7 @@ namespace PortfolioApp.Models.Umbraco
 {
 	/// <summary>Projects</summary>
 	[PublishedModel("projects")]
-	public partial class Projects : PublishedContentModel
+	public partial class Projects : PublishedContentModel, IBaseSection
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -50,11 +50,27 @@ namespace PortfolioApp.Models.Umbraco
 		// properties
 
 		///<summary>
-		/// Project List
+		/// Projecten lijst
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("projectList")]
 		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel ProjectList => this.Value<global::Umbraco.Cms.Core.Models.Blocks.BlockListModel>(_publishedValueFallback, "projectList");
+
+		///<summary>
+		/// Beschrijving
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Titel
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionTitle")]
+		public virtual string SectionTitle => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionTitle(this, _publishedValueFallback);
 	}
 }

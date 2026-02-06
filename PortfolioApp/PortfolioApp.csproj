@@ -2,6 +2,9 @@
   <PropertyGroup>
     <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
   </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\bundler\.gitkeep" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Umbraco.Cms" Version="17.1.0" />
@@ -17,6 +20,11 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="node_modules\.gitkeep" />
+    <None Include="wwwroot\bundler\.gitkeep" />
   </ItemGroup>
 
   <PropertyGroup>

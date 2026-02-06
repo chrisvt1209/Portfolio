@@ -20,7 +20,7 @@ namespace PortfolioApp.Models.Umbraco
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
-	public partial class Home : PublishedContentModel
+	public partial class Home : PublishedContentModel, IBaseSection
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -48,5 +48,61 @@ namespace PortfolioApp.Models.Umbraco
 		}
 
 		// properties
+
+		///<summary>
+		/// Contact
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("contactButtonText")]
+		public virtual string ContactButtonText => this.Value<string>(_publishedValueFallback, "contactButtonText");
+
+		///<summary>
+		/// CV uploaden
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("cvUploaden")]
+		public virtual string CvUploaden => this.Value<string>(_publishedValueFallback, "cvUploaden");
+
+		///<summary>
+		/// Expertise
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("expertise")]
+		public virtual string Expertise => this.Value<string>(_publishedValueFallback, "expertise");
+
+		///<summary>
+		/// Introductie
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("introductionText")]
+		public virtual string IntroductionText => this.Value<string>(_publishedValueFallback, "introductionText");
+
+		///<summary>
+		/// CV tekst
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("resume")]
+		public virtual string Resume => this.Value<string>(_publishedValueFallback, "resume");
+
+		///<summary>
+		/// Beschrijving
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Titel
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionTitle")]
+		public virtual string SectionTitle => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionTitle(this, _publishedValueFallback);
 	}
 }
