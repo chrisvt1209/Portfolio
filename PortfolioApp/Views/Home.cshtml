@@ -1,5 +1,12 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@using PortfolioApp.Models.Umbraco
+@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Home>
 @{
-	Layout = null;
+    var sections = Model.Children()?.FirstOrDefault(x => x.ContentType.Alias == Sections.ModelTypeAlias);
+    var navItems = sections?.Children() ?? Enumerable.Empty<IPublishedContent>();
+}
+
+@foreach (var item in navItems)
+{
+    @await Html.PartialAsync($"~/Views/Partials/_{item.ContentType.Alias}.cshtml", item)
 }

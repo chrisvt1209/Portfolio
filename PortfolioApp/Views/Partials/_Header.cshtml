@@ -1,1 +1,112 @@
-﻿
+﻿@using PortfolioApp.Models.Umbraco
+@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@{
+    var root = Umbraco.ContentAtRoot().FirstOrDefault();
+    var sections = Model.Children()?.FirstOrDefault(x => x.ContentType.Alias == Sections.ModelTypeAlias);
+    var navItems = sections?.Children() ?? Enumerable.Empty<IPublishedContent>();
+    var indexPage = Model.AncestorOrSelf<Home>();
+    var languages = await LanguageService.GetAllAsync();
+    var counter = 1;
+}
+
+<nav class="navbar main-navbar on-top nav-shadow">
+    <div class="container">
+        <a class="navbar-brand text-light">
+            <img src="#" alt="logo" />
+        </a>
+        <ul class="menu-ul">
+            @foreach (var item in navItems)
+            {
+                var sectionId = item.ContentType.Alias.ToLowerInvariant();
+                var anchorLink = $"#{sectionId}";
+
+                <li>
+                    <a class="nav-link" href="@anchorLink" data-section="@sectionId"><span class="nav-number">@counter.ToString("00"). </span> <span class="underline nav-text">@item.Name</span></a>
+                </li>
+                counter++;
+            }
+            <li>
+                <a class="dynamic-btn dynamic-btn-small">
+                    <div class="btn-bg"></div>
+                    <div class="liquid-container">
+                        <div class="liquid-wave wave-1"></div>
+                        <div class="liquid-wave wave-2"></div>
+                        <div class="liquid-wave wave-3"></div>
+                    </div>
+
+                    <div class="particles-container">
+                        <div class="particle"></div>
+                    </div>
+
+                    <div class="shine-effect"></div>
+
+                    <span class="btn-text">@indexPage!.Resume</span>
+                </a>
+            </li>
+            <li>
+                <div class="dropdown d-inline-block">
+                    <div class="language-container dropdown-toggle" id="dropdownForm1" data-bs-toggle="dropdown">
+                        <div class="dropdown-menu" aria-labelledby="dropDownForm1">
+                            @foreach (var language in languages)
+                            {
+                                <span class="flag-text">@language.CultureName</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="menu-wrapper">
+            <div class="hamburger-menu" id="hamburgerMenu"></div>
+        </div>
+        <div class="menu-responsive" id="menuResponsive">
+            <aside class="on-top" id="responsiveAside">
+                <nav>
+                    <ol>
+                        @foreach (var item in navItems)
+                        {
+                            var sectionId = item.ContentType.Alias.ToLowerInvariant();
+                            var anchorLink = $"#{sectionId}";
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="@anchorLink" data-section="@sectionId">
+                                    <span class="nav-number">@counter.ToString("00"). </span>@item.Name
+                                </a>
+                            </li>
+                            counter++;
+                        }
+                        <li>
+                            <a class="dynamic-btn">
+                                <div class="btn-bg"></div>
+                                <div class="liquid-container">
+                                    <div class="liquid-wave wave-1"></div>
+                                    <div class="liquid-wave wave-2"></div>
+                                    <div class="liquid-wave wave-3"></div>
+                                </div>
+
+                                <div class="particles-container">
+                                    <div class="particle"></div>
+                                </div>
+
+                                <div class="shine-effect"></div>
+
+                                <span class="btn-text">@indexPage!.Resume</span>
+                            </a>
+                        </li>
+                        <li>
+                            <div class="d-inline-block">
+                                <div class="language-container">
+                                    @foreach (var language in languages)
+                                    {
+                                        <span class="flag-text">@language</span>
+                                    }
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                </nav>
+            </aside>
+        </div>
+    </div>
+</nav>

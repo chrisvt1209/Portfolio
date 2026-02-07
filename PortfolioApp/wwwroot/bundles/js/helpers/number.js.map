@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../assets/js/helpers/number.js"],
+  "sourcesContent": ["\uFEFF/**\r\n * Parses a localized numeric string into a JavaScript number.\r\n *\r\n * This function takes a string representing a number that may include\r\n * a custom decimal separator and a thousands separator, then converts\r\n * it into a proper JavaScript `number`.\r\n *\r\n * @param {string} num - The numeric string to parse (e.g. `\"1.234,56\"`).\r\n * @param {string} decimal - The decimal separator used in the string (e.g. `\",\"`).\r\n * @param {string} thousands - The thousands separator used in the string (e.g. `\".\"`).\r\n * @returns {number} The parsed number as a float.\r\n *\r\n * @example\r\n * parseNumber(\"1.234,56\", \",\", \".\"); // returns 1234.56\r\n * parseNumber(\"12,345.67\", \".\", \",\"); // returns 12345.67\r\n */\r\n\r\nexport const parseNumber = function (num, decimal, thousands) {\r\n    let bits = num.split(decimal, 2),\r\n        ones = bits[0].replace(new RegExp('\\\\' + thousands, 'g'), '');\r\n    ones = parseFloat(ones, 10),\r\n        decimal = parseFloat('0.' + bits[1], 10);\r\n    return ones + decimal;\r\n}\r\n"],
+  "mappings": "4CAiBO,IAAMA,EAAcC,EAAA,SAAUC,EAAKC,EAASC,EAAW,CAC1D,IAAIC,EAAOH,EAAI,MAAMC,EAAS,CAAC,EAC3BG,EAAOD,EAAK,CAAC,EAAE,QAAQ,IAAI,OAAO,KAAOD,EAAW,GAAG,EAAG,EAAE,EAChE,OAAAE,EAAO,WAAWA,EAAM,EAAE,EACtBH,EAAU,WAAW,KAAOE,EAAK,CAAC,EAAG,EAAE,EACpCC,EAAOH,CAClB,EAN2B",
+  "names": ["parseNumber", "__name", "num", "decimal", "thousands", "bits", "ones"]
+}

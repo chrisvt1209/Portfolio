@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../assets/js/helpers/toast.js"],
+  "sourcesContent": ["\uFEFF/**\r\n * Shows a toast element by ID.\r\n *\r\n * @param {string} id - The CSS selector (e.g., `#toastId`) of the toast element.\r\n *\r\n * @example\r\n * showToast(\"#my-toast\");\r\n */\r\nconst showToast = (id) => {\r\n    const toast = document.querySelector(id);\r\n    toast.show();\r\n};\r\n\r\n/**\r\n * Shows the global data error toast.\r\n *\r\n * Convenience function for displaying a predefined toast element\r\n * with the ID `#global-data-error-toast`.\r\n *\r\n * @example\r\n * showDataErrorToast();\r\n */\r\nexport const showDataErrorToast = () => {\r\n    showToast(\"#global-data-error-toast\");\r\n};\r\n"],
+  "mappings": "4CAQA,IAAMA,EAAYC,EAACC,GAAO,CACR,SAAS,cAAcA,CAAE,EACjC,KAAK,CACf,EAHkB,aAcLC,EAAqBF,EAAA,IAAM,CACpCD,EAAU,0BAA0B,CACxC,EAFkC",
+  "names": ["showToast", "__name", "id", "showDataErrorToast"]
+}

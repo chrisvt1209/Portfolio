@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Html
+@using PortfolioApp.Models.Umbraco
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@model IPublishedContent
+@{
+    var aboutSection = Model as AboutMe;
+    if (aboutSection is null) return;
+}
+
+<section class="section about" id="about">
+    <div container>
+        <div class="section-box">
+            <div class="about-title">
+                <h3 class="section-title">@aboutSection.SectionTitle</h3>
+            </div>
+            <div class="row">
+                <div class="col-12 col-md-6 mb-4 mb-md-0">
+                    <div class="about-description">
+                        @Html.Raw(aboutSection.SectionDescription)
+                        <ul class="skills-list">
+                            @foreach(var skill in aboutSection.TechExperience!)
+                            {
+                                <li class="skill-element">
+                                    <span class="underline">@skill</span>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mt-4 mt-md-0 text-center">
+                    <div class="about-img-container">
+                        <img class="rounded about-image clickable" src="@Url.GetCropUrl(aboutSection.AboutMePicture, "square"))" alt="Chris" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*
+    <div class="image-modal-overlay">
+        <div class="image-modal-container">
+            <button class="modal-close-btn">
+                <span>&times;</span>
+            </button>
+            <img class="modal-image" src="@Url.GetCropUrl(aboutSection.AboutMePicture, "square"))" alt="Chris - Modal Picture" />
+        </div>
+    </div>
+    *@
+</section>

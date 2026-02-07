@@ -1,20 +1,35 @@
-﻿@using Umbraco.Cms.Core.Models.PublishedContent
-@using Umbraco.Extensions
-@inject Umbraco.Cms.Web.Common.UmbracoHelper Umbraco
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@{
+    var langCode = VariationContextAccessor.VariationContext?.Culture;
+    var languages = await LanguageService.GetAllAsync();
+}
 
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Portfolio</title>
-        <link rel="stylesheet" href="~/css/styles.css" />
-    </head>
-    <body>
+<html lang="@langCode">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    @foreach (var language in languages)
+    {
+        if (language.IsoCode != langCode)
+        {
+            <link rel="alternate" hreflang="@language.IsoCode" href="@Model.Url(culture: @language.IsoCode, mode: UrlMode.Absolute)">
+        }
+    }
+    <link rel="alternate" hreflang="x-default" href="@(Model.Url(culture: "en-US", mode: UrlMode.Absolute))" />
+    <link rel="canonical" href="@(Model.Url(mode: UrlMode.Absolute))" />
+
+    <link asp-add-nonce rel="stylesheet" href="~/bundles/scss/styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Style", false)
+</head>
+<body>
+    @await Html.PartialAsync("~/Views/Partials/_Header.cshtml", Model)
+    @RenderBody()
+    @await Html.PartialAsync("~/Views/Partials/_Footer.cshtml", Model)
         
-        @RenderBody()
-        
-        <script src="~/scripts/script.js" asp-append-version="true"></script>
-        @await RenderSectionAsync("Scripts", required: false)
-    </body>
+    <script asp-add-nonce src="~/bundles/js/script.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", false)
+    <Esbuild-Script/>
+</body>
 </html>

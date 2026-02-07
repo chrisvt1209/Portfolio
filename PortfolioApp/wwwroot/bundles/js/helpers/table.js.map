@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../assets/js/helpers/table.js"],
+  "sourcesContent": ["\uFEFF/**\r\n * Wraps content in a <span> that preserves whitespace and prevents line breaks.\r\n *\r\n * @param {string} content - The text content to wrap.\r\n * @returns {string} HTML string with the content inside a <span> styled with `white-space: pre`.\r\n *\r\n * @example\r\n * const html = singleLineColumn(\"Hello\\nWorld\");\r\n * // '<span style=\"white-space: pre\">Hello\\nWorld</span>'\r\n */\r\nexport const singleLineColumn = (content) => {\r\n    return `<span style=\"white-space: pre\">${content}</span>`;\r\n};\r\n\r\n/**\r\n * Returns an HTML string for a disabled checkbox representing a boolean value.\r\n *\r\n * The checkbox uses a custom `<tmb-checkbox>` element and is rendered as a switch.\r\n *\r\n * @param {boolean} isChecked - Whether the checkbox should be checked.\r\n * @returns {string} HTML string for the checkbox.\r\n *\r\n * @example\r\n * const html = formatBoolean(true);\r\n * // '<tmb-checkbox is-checked=\"true\" is-switch is-disabled></tmb-checkbox>'\r\n */\r\nexport const formatBoolean = (isChecked) => {\r\n    return `<tmb-checkbox is-checked=\"${isChecked}\" is-switch is-disabled></tmb-checkbox>`;\r\n};\r\n"],
+  "mappings": "4CAUO,IAAMA,EAAmBC,EAACC,GACtB,kCAAkCA,CAAO,UADpB,oBAgBnBC,EAAgBF,EAACG,GACnB,6BAA6BA,CAAS,0CADpB",
+  "names": ["singleLineColumn", "__name", "content", "formatBoolean", "isChecked"]
+}

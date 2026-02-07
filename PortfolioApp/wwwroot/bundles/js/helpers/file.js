@@ -1,0 +1,2 @@
+import{a as s}from"../../chunk-AYDF3IFZ.js";var d=s(t=>new Promise((r,o)=>{let e=new FileReader;e.readAsDataURL(t),e.onload=()=>r(e.result),e.onerror=o}),"toBase64"),w=s((t,r,o)=>{if(t.startsWith("data:")){for(var e=t.split(","),l=e[0].match(/:(.*?);/)[1],h=atob(e[e.length-1]),a=h.length,i=new Uint8Array(a);a--;)i[a]=h.charCodeAt(a);var c=new File([i],r,{type:l||o});return Promise.resolve(c)}return fetch(t).then(n=>n.arrayBuffer()).then(n=>new File([n],r,{type:o}))},"toFile");export{d as toBase64,w as toFile};
+//# sourceMappingURL=file.js.map

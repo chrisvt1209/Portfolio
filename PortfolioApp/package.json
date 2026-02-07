@@ -9,7 +9,7 @@
     "dev": "node build.debug.js",
     "prod": "node build.prod.js"
   },
-  "author": "Tambien",
+  "author": "Chris",
   "dependencies": {
     "bootstrap": "5.3.8",
     "date-fns": "*"

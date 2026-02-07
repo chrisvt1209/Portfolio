@@ -1,41 +1,73 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <CompressionEnabled>false</CompressionEnabled> <!-- Disable compression. E.g. for umbraco backoffice files. These files should be precompressed by node and not let dotnet handle it -->
+	<TargetFramework>net10.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
+	<Nullable>enable</Nullable>
+	<CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+	<CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+	<EnableDefaultContentItems>false</EnableDefaultContentItems>
+	<RunPostBuildEvent>Always</RunPostBuildEvent>
+	<DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+	<YourDestinationDirectory>wwwroot/bundles</YourDestinationDirectory>
+	<YourSourceDirectory>wwwroot/bundles</YourSourceDirectory>
+	<CompressionEnabled>false</CompressionEnabled>
   </PropertyGroup>
+  
   <ItemGroup>
-    <Content Remove="wwwroot\bundler\.gitkeep" />
+	<Compile Remove="wwwroot\bundles\**" />
+	<EmbeddedResource Remove="wwwroot\bundles\**" />
+	<Content Remove="wwwroot\bundles\**" />
+	<None Remove="wwwroot\bundles\**" />
+  </ItemGroup>
+	
+  <ItemGroup>
+	<Content Include="App_Plugins\**" CopyToOutputDirectory="Always" />
+	<Content Include="Views\**" CopyToOutputDirectory="Always" />
+	<Content Include="appsettings.json" CopyToPublishDirectory="Always" />
+	<Content Include="wwwroot\**" Exclude="wwroot\assets\js\**" CopyToPublishDirectory="Always" />
+	<Content Include="templates\**" CopyToPublishDirectory="Always" />
+	<Content Include="umbraco-migrations\stylesheets\**" CopyToPublishDirectory="Always" />
+	<Content Include="usync\**" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+	 
+
+  <ItemGroup>
+	<PackageReference Include="Umbraco.Cms" Version="17.1.0" />
+	<PackageReference Include="uSync" Version="17.0.2" />
+	<PackageReference Include="NWebsec.AspNetCore.Middleware" Version="*" />
+	<PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="*" />
+	<PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="*" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Umbraco.Cms" Version="17.1.0" />
-    <PackageReference Include="Umbraco.Cms.DevelopmentMode.Backoffice" Version="17.1.0" />
+	<None Include="node_modules\.gitkeep" />
+	<None Include="wwwroot\media\.gitkeep" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Opt-in to app-local ICU to ensure consistent globalization APIs across different platforms -->
-    <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="72.1.0.3" />
-    <PackageReference Include="uSync" Version="17.0.2" />
-    <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="72.1.0.3" Condition="$(RuntimeIdentifier.StartsWith('linux')) or $(RuntimeIdentifier.StartsWith('win')) or ('$(RuntimeIdentifier)' == '' and !$([MSBuild]::IsOSPlatform('osx')))" />
-  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(ConfigurationName) == Debug">
+	<Exec Command="npm run dev" />
+  </Target>
 
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+	<ItemGroup>
+	  <FilesToDelete Include="wwwroot/bundles/**/*.*" />
+	</ItemGroup>
+	<!-- Build our single page application content -->
+	<Message Text="Deleting Files @(FilesToDelete)" />
+	  <Delete Files="@(FilesToDelete)">
+		<Output TaskParameter="DeletedFiles" ItemName="FilesDeleted" />
+	  </Delete>
+	  <Message Text="Files deleted: @(FilesDeleted)" />
+  </Target>
 
-  <ItemGroup>
-    <None Include="node_modules\.gitkeep" />
-    <None Include="wwwroot\bundler\.gitkeep" />
-  </ItemGroup>
+  <Target Name="NpmPublish" AfterTargets="PrepublishScript">
+	<Exec Command="npm run prod" />
 
-  <PropertyGroup>
-    <!-- Razor files are needed for the backoffice to work correctly -->
-    <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
-  </PropertyGroup>
+	<CreateItem Include="$(YourSourceDirectory)\**\*.*">
+	  <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
+	</CreateItem>
 
-  <PropertyGroup>
-    <!-- Remove RazorCompileOnBuild and RazorCompileOnPublish when not using ModelsMode InMemoryAuto -->
-    <RazorCompileOnBuild>false</RazorCompileOnBuild>
-    <RazorCompileOnPublish>false</RazorCompileOnPublish>
-  </PropertyGroup>
+	<Copy SourceFiles="@(YourFilesToCopy)" DestinationFiles="@(YourFilesToCopy->'$(PublishDir)/$(YourDestinationDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
 
 </Project>

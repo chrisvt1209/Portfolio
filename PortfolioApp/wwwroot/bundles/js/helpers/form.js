@@ -1,0 +1,2 @@
+import{a as l,c as a}from"../../chunk-6JPZG2QV.js";import{a as r}from"../../chunk-AYDF3IFZ.js";var c=r((s,o,t)=>{let e=s.querySelector(`[name="${o}"]`);e!=null&&(e.tagName==="TMB-SELECT"?t?e.selected=[t]:e.selected=[]:e.tagName==="TMB-DATEPICKER"?e.value=[t]:e.value=t)},"setFormFieldValue"),f=r((s,o)=>{for(let t of Object.entries(o)){let e=a(t[1]),i=e&&isNaN(t[1])?l(e,"yyyy-MM-dd"):t[1];c(s,t[0],i)}},"setFormFieldValuesForObject");export{c as setFormFieldValue,f as setFormFieldValuesForObject};
+//# sourceMappingURL=form.js.map

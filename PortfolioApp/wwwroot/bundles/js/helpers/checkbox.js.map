@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../assets/js/helpers/checkbox.js"],
+  "sourcesContent": ["\uFEFF/**\r\n * Retrieves the values of all checked form elements matching a selector.\r\n *\r\n * This function queries the DOM for all elements matching the provided\r\n * selector, filters to only those that are checked (e.g. checkboxes, radio buttons),\r\n * and returns an array of their `value` attributes.\r\n *\r\n * @param {string} selector - A CSS selector string used to match form elements.\r\n * @returns {string[]} An array of values from the checked elements.\r\n *\r\n * @example\r\n * // Given checkboxes:\r\n * // <input type=\"checkbox\" name=\"fruit\" value=\"apple\" checked>\r\n * // <input type=\"checkbox\" name=\"fruit\" value=\"banana\">\r\n * // <input type=\"checkbox\" name=\"fruit\" value=\"cherry\" checked>\r\n *\r\n * getSelectedValues('input[name=\"fruit\"]');\r\n * // returns [\"apple\", \"cherry\"]\r\n */\r\n\r\nexport const getSelectedValues = (selector) => {\r\n    return Array.from(document.querySelectorAll(selector))\r\n        .filter(element => element.checked)\r\n        .map(element => element.value);\r\n}\r\n\r\n"],
+  "mappings": "4CAoBO,IAAMA,EAAoBC,EAACC,GACvB,MAAM,KAAK,SAAS,iBAAiBA,CAAQ,CAAC,EAChD,OAAOC,GAAWA,EAAQ,OAAO,EACjC,IAAIA,GAAWA,EAAQ,KAAK,EAHJ",
+  "names": ["getSelectedValues", "__name", "selector", "element"]
+}

@@ -58,14 +58,6 @@ namespace PortfolioApp.Models.Umbraco
 		public virtual string ContactButtonText => this.Value<string>(_publishedValueFallback, "contactButtonText");
 
 		///<summary>
-		/// CV uploaden
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("cvUploaden")]
-		public virtual string CvUploaden => this.Value<string>(_publishedValueFallback, "cvUploaden");
-
-		///<summary>
 		/// Expertise
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
@@ -88,6 +80,14 @@ namespace PortfolioApp.Models.Umbraco
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("resume")]
 		public virtual string Resume => this.Value<string>(_publishedValueFallback, "resume");
+
+		///<summary>
+		/// CV uploaden
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("uploadResume")]
+		public virtual string UploadResume => this.Value<string>(_publishedValueFallback, "uploadResume");
 
 		///<summary>
 		/// Beschrijving

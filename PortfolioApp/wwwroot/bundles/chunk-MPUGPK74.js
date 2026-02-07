@@ -1,0 +1,2 @@
+import{a as n}from"./chunk-AYDF3IFZ.js";var o=n(async t=>fetch(t,{method:"GET",headers:{Accept:"application/json","Content-Type":"application/json","Tmb-Lang":CURRENT_LANG}}),"get"),p=n(async(t,e)=>fetch(t,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json","Tmb-Lang":CURRENT_LANG},body:JSON.stringify(e)}),"post");export{o as a,p as b};
+//# sourceMappingURL=chunk-MPUGPK74.js.map
