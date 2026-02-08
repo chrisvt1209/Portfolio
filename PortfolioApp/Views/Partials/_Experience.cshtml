@@ -1,1 +1,37 @@
-﻿
+﻿@using Microsoft.AspNetCore.Html
+@using PortfolioApp.Models.Umbraco
+@using Umbraco.Cms.Core.Models.Blocks
+@using Umbraco.Cms.Web.Common.PublishedModels
+@model IPublishedContent
+@{
+    var experienceSection = Model as Experience;
+    if (experienceSection is null) return;
+
+    var experienceBlocks = experienceSection.Value<IEnumerable<BlockListItem>>(nameof(Experience.WorkExperienceList));
+    var allExperience = experienceBlocks?
+        .Select(block => block.Content as ExperienceItem)
+        .Where(experienceItem => experienceItem is not null)
+        .Cast<ExperienceItem>()
+        .ToList()
+        ?? new List<ExperienceItem>();
+}
+
+<section class="section" id="jobs">
+    <div class="container jobs">
+        <div class="section-box">
+            <div class="about-title mb-5">
+                <h3 class="e-font section-title">@experienceSection.SectionTitle</h3>
+            </div>
+            <div class="jobs-tabs">
+                <ul orientation="vertical" class="nav-tabs jobs-tabs">
+                    @foreach (var job in allExperience)
+                    {
+                        <li>
+                            
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

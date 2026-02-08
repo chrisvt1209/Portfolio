@@ -74,6 +74,14 @@ namespace PortfolioApp.Models.Umbraco
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionDescription(this, _publishedValueFallback);
 
 		///<summary>
+		/// Sub titel
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionSubTitle")]
+		public virtual string SectionSubTitle => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionSubTitle(this, _publishedValueFallback);
+
+		///<summary>
 		/// Titel
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]

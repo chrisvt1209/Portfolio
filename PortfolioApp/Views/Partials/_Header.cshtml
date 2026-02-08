@@ -10,12 +10,12 @@
     var counter = 1;
 }
 
-<nav class="navbar main-navbar on-top nav-shadow">
+<nav class="navbar main-navbar on-top">
     <div class="container">
         <a class="navbar-brand text-light">
             <img src="#" alt="logo" />
         </a>
-        <ul class="menu-ul">
+        <ul class="nav menu-ul">
             @foreach (var item in navItems)
             {
                 var sectionId = item.ContentType.Alias.ToLowerInvariant();
@@ -50,18 +50,20 @@
                         <div class="dropdown-menu" aria-labelledby="dropDownForm1">
                             @foreach (var language in languages)
                             {
-                                <span class="flag-text">@language.CultureName</span>
+                                <span class="flag-text">@language.CultureInfo</span>
                             }
                         </div>
                     </div>
                 </div>
             </li>
         </ul>
+        
         <div class="menu-wrapper">
             <div class="hamburger-menu" id="hamburgerMenu"></div>
         </div>
-        <div class="menu-responsive" id="menuResponsive">
-            <aside class="on-top" id="responsiveAside">
+        
+        <div class="menu-responsive">
+            <aside class="on-top">
                 <nav>
                     <ol>
                         @foreach (var item in navItems)
@@ -99,7 +101,7 @@
                                 <div class="language-container">
                                     @foreach (var language in languages)
                                     {
-                                        <span class="flag-text">@language</span>
+                                        <span class="flag-text">@language.CultureInfo</span>
                                     }
                                 </div>
                             </div>

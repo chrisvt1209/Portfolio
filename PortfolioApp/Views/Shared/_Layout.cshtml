@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Portfolio - Chris van Tiggelen</title>
     @foreach (var language in languages)
     {
         if (language.IsoCode != langCode)
@@ -26,8 +26,7 @@
 <body>
     @await Html.PartialAsync("~/Views/Partials/_Header.cshtml", Model)
     @RenderBody()
-    @await Html.PartialAsync("~/Views/Partials/_Footer.cshtml", Model)
-        
+            
     <script asp-add-nonce src="~/bundles/js/script.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", false)
     <Esbuild-Script/>

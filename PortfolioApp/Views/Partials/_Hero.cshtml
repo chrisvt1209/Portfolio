@@ -1,0 +1,29 @@
+﻿@using PortfolioApp.Models.Umbraco
+@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@{
+    var indexPage = Model.AncestorOrSelf<Home>();
+
+    if (indexPage is null) return;
+}
+<section class="section banner">
+    <div class="container">
+        <div class="section-box-banner">
+            <div class="content">
+                <div class="banner-pretitle">
+                    <h1>@indexPage.IntroductionText</h1>
+                </div>
+                <div class="banner-title">
+                    <h2 class="banner-name">@indexPage.SectionTitle</h2>
+                    <h3 class="banner-subtitle">@indexPage.Expertise</h3>
+                </div>
+                <div class="banner-description">
+                    <div class="mt-4">@Html.Raw(indexPage.SectionDescription)</div>
+                </div>
+            </div>
+            <div class="div-btn-banner">
+                
+            </div>
+        </div>
+    </div>
+</section>

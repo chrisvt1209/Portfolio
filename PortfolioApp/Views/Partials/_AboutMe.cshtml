@@ -9,7 +9,7 @@
 }
 
 <section class="section about" id="about">
-    <div container>
+    <div class="container">
         <div class="section-box">
             <div class="about-title">
                 <h3 class="section-title">@aboutSection.SectionTitle</h3>
@@ -30,20 +30,10 @@
                 </div>
                 <div class="col-12 col-md-6 mt-4 mt-md-0 text-center">
                     <div class="about-img-container">
-                        <img class="rounded about-image clickable" src="@Url.GetCropUrl(aboutSection.AboutMePicture, "square"))" alt="Chris" />
+                        <img class="rounded about-image clickable" src="@aboutSection.AboutMePicture!.Url()" alt="Chris" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @*
-    <div class="image-modal-overlay">
-        <div class="image-modal-container">
-            <button class="modal-close-btn">
-                <span>&times;</span>
-            </button>
-            <img class="modal-image" src="@Url.GetCropUrl(aboutSection.AboutMePicture, "square"))" alt="Chris - Modal Picture" />
-        </div>
-    </div>
-    *@
 </section>

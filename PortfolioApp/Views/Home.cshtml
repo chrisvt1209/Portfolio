@@ -6,7 +6,11 @@
     var navItems = sections?.Children() ?? Enumerable.Empty<IPublishedContent>();
 }
 
+@await Html.PartialAsync("~/Views/Partials/_Hero.cshtml", Model)
+
 @foreach (var item in navItems)
 {
     @await Html.PartialAsync($"~/Views/Partials/_{item.ContentType.Alias}.cshtml", item)
 }
+
+@await Html.PartialAsync("~/Views/Partials/_Footer.cshtml", Model)

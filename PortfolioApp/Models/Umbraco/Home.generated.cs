@@ -74,6 +74,14 @@ namespace PortfolioApp.Models.Umbraco
 		public virtual string IntroductionText => this.Value<string>(_publishedValueFallback, "introductionText");
 
 		///<summary>
+		/// Logo
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("logo")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Logo => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "logo");
+
+		///<summary>
 		/// CV tekst
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
@@ -96,6 +104,14 @@ namespace PortfolioApp.Models.Umbraco
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("sectionDescription")]
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString SectionDescription => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// Sub titel
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "17.1.0+2832436")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionSubTitle")]
+		public virtual string SectionSubTitle => global::PortfolioApp.Models.Umbraco.BaseSection.GetSectionSubTitle(this, _publishedValueFallback);
 
 		///<summary>
 		/// Titel
