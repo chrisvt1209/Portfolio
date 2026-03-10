@@ -36,6 +36,15 @@ public static partial class ServicesInitializer
         services.AddTransient<IBackofficeUserAccessor, BackofficeUserAccessor>();
         services.ConfigureEsBuild(env.IsDevelopment());
 
+        services.AddProblemDetails(configure =>
+        {
+            configure.CustomizeProblemDetails = context =>
+            {
+                context.ProblemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+            };
+        });
+        services.AddExceptionHandler<GlobalExceptionHandler>();
+
         services.AddResponseCompression();
         return builder;
     }

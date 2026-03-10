@@ -32,8 +32,9 @@
 	 
 
   <ItemGroup>
-	<PackageReference Include="Umbraco.Cms" Version="17.1.0" />
-	<PackageReference Include="uSync" Version="17.0.2" />
+	<PackageReference Include="StackExchange.Exceptional.AspNetCore" Version="3.0.1" />
+	<PackageReference Include="Umbraco.Cms" Version="17.2.2" />
+	<PackageReference Include="uSync" Version="17.0.4" />
 	<PackageReference Include="NWebsec.AspNetCore.Middleware" Version="*" />
 	<PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="*" />
 	<PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="*" />

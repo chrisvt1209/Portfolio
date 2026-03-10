@@ -57,6 +57,8 @@ public static class MiddlewareInitializer
         {
             app.UseEsbuild(env.WebRootPath);
         }
+
+        app.UseExceptionHandler();
         app.UseAuthentication();
         app.UseAuthorization();
 
