@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font (lijkt op template stijl) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <link href="styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <div class="container app-navbar">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <strong class="logo">Chris</strong>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <a class="app-nav-link" href="#">
+                    <span class="nav-number">01. </span>
+                    <span class="underline">Over mij</span>
+                </a>
+                <a class="app-nav-link" href="#">
+                    <span class="nav-number">02. </span>
+                    <span class="underline">Ervaring</span>
+                </a>
+                <a class="app-nav-link" href="#">
+                    <span class="nav-number">03. </span>
+                    <span class="underline">Projecten</span>
+                </a>
+                <a class="app-nav-link" href="#">
+                    <span class="nav-number">04. </span>
+                    <span class="underline">Contact</span>
+                </a>
+            </div>
+
+            <div class="d-flex align-items-center">
+                <a class="app-btn-outline ms-4" href="#">Resume</a>
+
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Taal
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Nederlands</a></li>
+                        <li><a class="dropdown-item" href="#">Engels</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="container hero-section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hero-intro">
+                    Hoi, mijn naam is
+                </div>
+                <h1 class="hero-name">
+                    Chris van Tiggelen.
+                </h1>
+                <h2 class="hero-tagline">
+                    Web Developer
+                </h2>
+                <p class="hero-description">
+                    Met een achtergrond in grafisch ontwerp en een passie voor techniek heb ik me
+                    ontwikkeld tot een leergierige en doelgerichte web developer. Ik combineer creatief
+                    denken met technische kennis om gebruiksvriendelijke en degelijke oplossingen te
+                    bouwen.
+                </p>
+                <a href="#" class="app-btn-primary">
+                    Neem contact op
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="container py-5">
+        <div class="section-title">
+            <span>03.</span>
+            <h2>Mijn projecten</h2>
+            <hr>
+        </div>
+
+        <!-- PROJECT 1 -->
+        <div class="featured-project">
+            <div class="row align-items-center featured-wrapper">
+                <div class="col-lg-7 featured-image">
+                    <img src="https://placehold.co/600x400?text=Hello+World">
+                </div>
+                <div class="featured-content right">
+                    <div class="featured-label">Gehighlight Project</div>
+                    <div class="featured-title">Portfolio</div>
+                    <div class="featured-description">
+                        Een portfolio gemaakt in C# met een Umbraco CMS
+                    </div>
+                    <div class="featured-tech">
+                        <span class="underline">C#</span> · <span class="underline">Umbraco</span> · <span
+                            class="underline">SASS</span> · <span class="underline">Javascript</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 2 (mirrored) -->
+        <div class="featured-project">
+            <div class="row align-items-center featured-wrapper">
+                <div class="col-lg-7 offset-lg-5 featured-image">
+                    <img src="https://placehold.co/600x400?text=Hello+World">
+                </div>
+                <div class="featured-content left">
+                    <div class="featured-label">Highlighted Project</div>
+                    <div class="featured-title">Lorem Ipsum</div>
+                    <div class="featured-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Optio nihil dicta recusandae accusantium.
+                    </div>
+                    <div class="featured-tech">
+                        Laravel · Angular · SASS
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="featured-project">
+            <div class="row align-items-center featured-wrapper">
+                <div class="col-lg-7 featured-image">
+                    <img src="https://placehold.co/600x400?text=Hello+World">
+                </div>
+                <div class="featured-content right">
+                    <div class="featured-label">Gehighlight Project</div>
+                    <div class="featured-title">Portfolio</div>
+                    <div class="featured-description">
+                        Een portfolio gemaakt in C# met een Umbraco CMS
+                    </div>
+                    <div class="featured-tech">
+                        C# · Umbraco · SASS · Javascript
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 4 (mirrored) -->
+        <div class="featured-project">
+            <div class="row align-items-center featured-wrapper">
+                <div class="col-lg-7 offset-lg-5 featured-image">
+                    <img src="https://placehold.co/600x400?text=Hello+World">
+                </div>
+                <div class="featured-content left">
+                    <div class="featured-label">Highlighted Project</div>
+                    <div class="featured-title">Lorem Ipsum</div>
+                    <div class="featured-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Optio nihil dicta recusandae accusantium.
+                    </div>
+                    <div class="featured-tech">
+                        Laravel · Angular · SASS
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MORE PROJECTS -->
+    <section class="container py-5">
+        <div class="section-title">
+            <span>04.</span>
+            <h2>More Projects</h2>
+            <hr>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-card-title">Hands Game</div>
+
+                    <div class="project-card-desc">
+                        Extended rock paper scissors game built in Angular.
+                    </div>
+
+                    <div class="project-card-tags">
+                        Angular · CSS Grid · SASS
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-card-title">Countries Viewer</div>
+
+                    <div class="project-card-desc">
+                        Interface consuming a countries API with filtering.
+                    </div>
+
+                    <div class="project-card-tags">
+                        Angular · RxJS · API
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card">
+                    <div class="project-card-title">Profile Card</div>
+
+                    <div class="project-card-desc">
+                        Simple profile card UI component.
+                    </div>
+
+                    <div class="project-card-tags">
+                        Angular · SASS · Git
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

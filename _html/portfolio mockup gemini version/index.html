@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chris | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="stars-container"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand text-teal" href="#">CVT</a>
+            <div class="ms-auto d-flex gap-4">
+                <a href="#about" class="nav-link">Over mij</a>
+                <a href="#experience" class="nav-link">Ervaring</a>
+                <a href="#work" class="nav-link">Projecten</a>
+                <a href="#contact" class="nav-link text-teal border-teal px-3">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="container hero-section section-padding">
+        <div class="row">
+            <div class="col-md-8">
+                <p class="text-teal mb-2">Hallo, ik ben</p>
+                <h1 class="display-2 fw-bold mb-0">Chris van Tiggelen.</h1>
+                <h2 class="display-4 text-secondary mb-4">Web Developer</h2>
+                <p class="lead text-muted col-lg-8">I build high-quality web applications and digital experiences with a
+                    focus on clean code and user-centric design.</p>
+                <a href="#work" class="btn btn-outline-teal mt-4 px-4 py-2">Check out my work!</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="about" class="container section-padding">
+        <div class="row align-items-center">
+            <div class="col-md-7">
+                <h3 class="section-heading">01. About Me</h3>
+                <p class="text-muted">Hello! I'm José, a developer based in... [Bio text from image]. I enjoy creating
+                    things that live on the internet.</p>
+                <ul class="skills-list">
+                    <li>JavaScript (ES6+)</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Python</li>
+                </ul>
+            </div>
+            <div class="col-md-5 text-center">
+                <div class="profile-frame">
+                    <img src="https://placehold.co/300x300/112240/64ffda?text=Chris" class="img-fluid rounded"
+                        alt="Profile">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="container section-padding">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                <h3 class="section-heading">02. Where I've Worked</h3>
+
+                <div class="d-flex flex-column flex-md-row mt-5">
+                    <div class="nav flex-column nav-pills me-md-5 mb-4 mb-md-0" id="v-pills-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <button class="nav-link active text-start px-4 py-3" id="tab-1" data-bs-toggle="pill"
+                            data-bs-target="#job-1" type="button" role="tab">Upwork</button>
+                        <button class="nav-link text-start px-4 py-3" id="tab-2" data-bs-toggle="pill"
+                            data-bs-target="#job-2" type="button" role="tab">Freelance</button>
+                        <button class="nav-link text-start px-4 py-3" id="tab-3" data-bs-toggle="pill"
+                            data-bs-target="#job-3" type="button" role="tab">Tech Studio</button>
+                    </div>
+
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="job-1" role="tabpanel">
+                            <h4 class="fw-bold mb-1">Full Stack Developer <span class="text-teal">@ Upwork</span></h4>
+                            <p class="small text-muted mb-4">January 2022 - Present</p>
+                            <ul class="experience-list list-unstyled">
+                                <li>Developed and maintained high-traffic web applications using React and Node.js.</li>
+                                <li>Collaborated with international clients to define project scopes and technical
+                                    requirements.</li>
+                                <li>Optimized database queries in PostgreSQL, leading to a 30% reduction in load times.
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="job-2" role="tabpanel">
+                            <h4 class="fw-bold mb-1">Software Engineer <span class="text-teal">@ Freelance</span></h4>
+                            <p class="small text-muted mb-4">June 2020 - Dec 2021</p>
+                            <ul class="experience-list list-unstyled">
+                                <li>Built custom e-commerce solutions for small to medium-sized businesses.</li>
+                                <li>Implemented responsive designs ensuring cross-browser compatibility and mobile-first
+                                    logic.</li>
+                                <li>Integrated third-party APIs for payment processing and shipping logistics.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-pane fade" id="job-3" role="tabpanel">
+                            <h4 class="fw-bold mb-1">Junior Developer <span class="text-teal">@ Tech Studio</span></h4>
+                            <p class="small text-muted mb-4">May 2019 - May 2020</p>
+                            <ul class="experience-list list-unstyled">
+                                <li>Assisted in the migration of legacy codebases to modern React-based architectures.
+                                </li>
+                                <li>Wrote unit tests and participated in regular code reviews to ensure quality.</li>
+                                <li>Supported the UI/UX team in prototyping new feature sets.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="container section-padding">
+        <h3 class="section-heading">03. Some Things I've Built</h3>
+
+        <div class="row project-item align-items-center">
+            <div class="col-lg-7">
+                <img src="https://placehold.co/600x350/112240/white?text=Project+Screenshot"
+                    class="img-fluid rounded shadow" alt="Project">
+            </div>
+            <div class="col-lg-5 text-end project-content">
+                <p class="text-teal mb-1">Featured Project</p>
+                <h4 class="fw-bold">Project Name Alpha</h4>
+                <div class="project-description p-4 mb-3">
+                    A web app for visualizing data trends and managing team workflows effectively.
+                </div>
+                <p class="text-muted small">React · Firebase · Bootstrap</p>
+            </div>
+        </div>
+
+        <div class="row project-item align-items-center flex-row-reverse mt-5">
+            <div class="col-lg-7">
+                <img src="https://placehold.co/600x350/112240/white?text=Project+Screenshot"
+                    class="img-fluid rounded shadow" alt="Project">
+            </div>
+            <div class="col-lg-5 text-start project-content">
+                <p class="text-teal mb-1">Featured Project</p>
+                <h4 class="fw-bold">Mobile First Dashboard</h4>
+                <div class="project-description p-4 mb-3">
+                    High-performance dashboard built with a focus on accessibility and mobile responsiveness.
+                </div>
+                <p class="text-muted small">Vue.js · Node.js · AWS</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="other-projects" class="container section-padding">
+        <div class="text-center mb-5">
+            <h3 class="fw-bold">Other Noteworthy Projects</h3>
+            <a href="#" class="text-teal text-decoration-none small">view the archive</a>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="folder-icon text-teal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-folder" viewBox="0 0 16 16">
+                                <path
+                                    d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z" />
+                            </svg>
+                        </div>
+                        <div class="external-links text-muted">
+                            <i class="bi bi-github me-2"></i>
+                            <i class="bi bi-box-arrow-up-right"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Integración API-REST</h5>
+                    <p class="text-muted small">A specialized service for integrating various REST APIs into a unified
+                        dashboard for enterprise clients.</p>
+                    <div class="mt-auto pt-3">
+                        <code class="text-muted small">React · Express · SQL</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="folder-icon text-teal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-folder" viewBox="0 0 16 16">
+                                <path
+                                    d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z" />
+                            </svg>
+                        </div>
+                        <div class="external-links text-muted">
+                            <i class="bi bi-github"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Bot de Notificaciones</h5>
+                    <p class="text-muted small">Automated notification system built for Discord and Slack using Node.js
+                        and webhooks.</p>
+                    <div class="mt-auto pt-3">
+                        <code class="text-muted small">Node.js · Discord.js</code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="project-card h-100 p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="folder-icon text-teal"><svg>...</svg></div>
+                        <div class="external-links text-muted"><i class="bi bi-github"></i></div>
+                    </div>
+                    <h5 class="fw-bold mb-3">Tienda Online Refactor</h5>
+                    <p class="text-muted small">Complete frontend refactor of a legacy PHP store to a modern Next.js
+                        architecture.</p>
+                    <div class="mt-auto pt-3">
+                        <code class="text-muted small">Next.js · Tailwind</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-outline-teal px-4 py-2">Show More</button>
+        </div>
+    </section>
+
+    <section id="contact" class="container section-padding text-center">
+        <p class="text-teal mb-2">05. What's Next?</p>
+        <h2 class="display-3 fw-bold mb-4">Get In Touch</h2>
+        <p class="text-muted mx-auto mb-5" style="max-width: 600px;">
+            I'm currently looking for new opportunities, my inbox is always open. Whether you have a question or just
+            want to say hi, I'll try my best to get back to you!
+        </p>
+        <a href="mailto:jose@example.com" class="btn btn-outline-teal btn-lg px-5 py-3">Say Hi!</a>
+    </section>
+
+    <footer class="text-center py-4 text-muted small">
+        Designed & Built by José Hernández
+    </footer>
+
+</body>
+
+</html>
