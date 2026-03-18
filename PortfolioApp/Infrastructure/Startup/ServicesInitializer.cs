@@ -1,4 +1,5 @@
 ﻿using PortfolioApp.Infrastructure.Esbuild;
+using PortfolioApp.Infrastructure.Handlers;
 using PortfolioApp.Infrastructure.Helpers;
 
 namespace PortfolioApp.Infrastructure.Startup;

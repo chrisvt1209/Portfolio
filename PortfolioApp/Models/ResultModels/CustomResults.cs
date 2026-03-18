@@ -16,7 +16,7 @@ public static class CustomResults
             statusCode: GetStatusCode(result.Error.Type),
             extensions: GetErrors(result));
 
-        static string GetTitle(AppError error) =>
+        static string GetTitle(Error error) =>
             error.Type switch
             {
                 ErrorType.Validation => error.Code,
@@ -26,7 +26,7 @@ public static class CustomResults
                 _ => "Service failure"
             };
 
-        static string GetDetail(AppError error) =>
+        static string GetDetail(Error error) =>
             error.Type switch
             {
                 ErrorType.Validation => error.Description,

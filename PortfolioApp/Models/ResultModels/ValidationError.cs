@@ -1,14 +1,14 @@
 ﻿namespace PortfolioApp.Models.ResultModels;
 
-public class ValidationError : AppError
+public class ValidationError : Error
 {
-    public ValidationError(AppError[] errors)
+    public ValidationError(Error[] errors)
         : base("Validation.General", "One or more validation failures have occurred.", ErrorType.Validation)
     {
         Errors = errors;
     }
 
-    public AppError[] Errors { get; }
+    public Error[] Errors { get; }
 
     public static ValidationError FromResults(IEnumerable<Result> results)
     {
