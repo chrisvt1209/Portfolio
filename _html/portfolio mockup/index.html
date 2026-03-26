@@ -4,227 +4,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Portfolio Mockup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Bootstrap Icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <!-- Google Font (lijkt op template stijl) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- NAVBAR -->
-    <div class="container app-navbar">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-                <strong class="logo">Chris</strong>
-            </div>
+    <div class="particle-field" aria-hidden="true"></div>
+    <div class="container-fluid header-shell px-0">
+        <header class="site-header d-flex align-items-center px-4 py-3">
+            <a class="brand" href="#top">
+                <span class="brand-mark">CVT</span>
+            </a>
 
-            <div class="d-flex align-items-center">
-                <a class="app-nav-link" href="#">
-                    <span class="nav-number">01. </span>
-                    <span class="underline">Over mij</span>
-                </a>
-                <a class="app-nav-link" href="#">
-                    <span class="nav-number">02. </span>
-                    <span class="underline">Ervaring</span>
-                </a>
-                <a class="app-nav-link" href="#">
-                    <span class="nav-number">03. </span>
-                    <span class="underline">Projecten</span>
-                </a>
-                <a class="app-nav-link" href="#">
-                    <span class="nav-number">04. </span>
-                    <span class="underline">Contact</span>
-                </a>
-            </div>
+            <nav class="site-nav d-flex align-items-center justify-content-center gap-4 position-absolute start-50 translate-middle-x"
+                id="site-nav" aria-label="Hoofdnavigatie">
+                <a class="underline" href="#about">over mij</a>
+                <a class="underline" href="#experience">ervaring</a>
+                <a class="underline" href="#projects">projecten</a>
+                <!-- <a class="underline" href="#contact">contact</a> -->
+                <a class="header-cta header-cta-mobile d-lg-none" href="resume.pdf" download>Download CV</a>
+            </nav>
 
-            <div class="d-flex align-items-center">
-                <a class="app-btn-outline ms-4" href="#">Resume</a>
-
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Taal
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Nederlands</a></li>
-                        <li><a class="dropdown-item" href="#">Engels</a></li>
-                    </ul>
-                </div>
+            <div class="header-actions d-flex align-items-center gap-3 ms-auto">
+                <a class="header-cta d-none d-lg-inline-flex" href="resume.pdf" download>Download CV</a>
+                <button class="menu-toggle d-inline-flex d-lg-none align-items-center justify-content-center"
+                    type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-        </div>
+        </header>
     </div>
 
-    <!-- HERO -->
-    <section class="container hero-section">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="hero-intro">
-                    Hoi, mijn naam is
+    <div class="page-shell">
+        <main>
+            <section class="hero" id="top">
+                <div class="hero-copy">
+                    <p class="eyebrow">Hoi, mijn naam is</p>
+                    <h1 class="hero-name" data-text="Chris van Tiggelen." aria-label="Chris van Tiggelen.">Chris van
+                        Tiggelen.</h1>
+                    <h2 class="hero-role">Web Developer</h2>
+                    <p class="hero-text">
+                        Met een achtergrond in grafisch ontwerp en een passie voor techniek
+                        heb ik me ontwikkeld tot een leergierige en doelgerichte web developer.
+                        Ik combineer creatief denken met technische kennis om gebruiksvriendelijke
+                        en degelijke oplossingen te bouwen.
+                    </p>
+
+                    <div class="hero-actions d-flex flex-wrap gap-3">
+                        <a class="button button-primary" href="#about">Over mij</a>
+                        <a class="button button-secondary" href="#projects">Bekijk projecten</a>
+                    </div>
+
+                    <ul class="hero-meta" aria-label="Kernpunten">
+                        <li>Creatief en oplossingsgericht</li>
+                        <li>Snel lerend, zelfstandig en communicatief</li>
+                        <li>Focust op C#, web development en Umbraco</li>
+                    </ul>
                 </div>
-                <h1 class="hero-name">
-                    Chris van Tiggelen.
-                </h1>
-                <h2 class="hero-tagline">
-                    Web Developer
-                </h2>
-                <p class="hero-description">
-                    Met een achtergrond in grafisch ontwerp en een passie voor techniek heb ik me
-                    ontwikkeld tot een leergierige en doelgerichte web developer. Ik combineer creatief
-                    denken met technische kennis om gebruiksvriendelijke en degelijke oplossingen te
-                    bouwen.
-                </p>
-                <a href="#" class="app-btn-primary">
-                    Neem contact op
+
+                <!-- <aside class="hero-panel">
+                    <div class="hero-panel-inner">
+                        <p class="panel-label">Quick snapshot</p>
+                        <div class="metric-grid">
+                            <article>
+                                <strong>5+</strong>
+                                <span>years working across design and web development</span>
+                            </article>
+                            <article>
+                                <strong>10</strong>
+                                <span>content-rich websites, UI concepts and portfolio builds</span>
+                            </article>
+                            <article>
+                                <strong>.NET</strong>
+                                <span>main direction with Umbraco and custom front-end work</span>
+                            </article>
+                        </div>
+                    </div>
+                </aside> -->
+            </section>
+
+            <section class="content-section" id="about">
+                <div class="section-label">
+                    <span>01.</span>
+                    <p>Over mij</p>
+                </div>
+
+                <div class="section-body section-body-split">
+                    <div class="text-block">
+                        <h2>Iets meer over mij</h2>
+                        <p>
+                            I started in a creative environment and gradually moved deeper into development, where I
+                            found the balance between visual thinking and technical problem solving. That mix still
+                            shapes the way I approach every project.
+                        </p>
+                        <p>
+                            I enjoy building interfaces that feel calm, clear and intentional while staying practical
+                            for editors and future developers. Whether I am working on a portfolio, a CMS-driven site
+                            or a reusable component library, I care about the details that make a product feel solid.
+                        </p>
+                        <p>
+                            Outside the code itself, I like translating rough ideas into structured solutions and
+                            turning visual direction into something that is maintainable, responsive and pleasant to
+                            use.
+                        </p>
+                    </div>
+
+                    <figure class="about-portrait">
+                        <img src="https://placehold.co/640x760/111611/39ff88?text=Chris"
+                            alt="Placeholder portrait for Chris van Tiggelen">
+                    </figure>
+                </div>
+            </section>
+
+            <section class="content-section" id="experience">
+                <div class="section-label">
+                    <span>02.</span>
+                    <p>Ervaring</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="experience-rail">
+                        <article class="experience-item">
+                            <span class="experience-year">2025 dec - Heden</span>
+                            <div class="experience-card">
+                                <p class="panel-label">Huidige baan</p>
+                                <h3>Web Developer bij Tambien</h3>
+                                <p>Building structured websites with reusable components, clean styling and a strong eye
+                                    for the editor experience behind the scenes.</p>
+                            </div>
+                        </article>
+
+                        <article class="experience-item experience-item-offset">
+                            <span class="experience-year">2025 feb - 2025 jun</span>
+                            <div class="experience-card">
+                                <p class="panel-label">Afstudeerstage</p>
+                                <h3>Software Developer bij Euphoria Mobility</h3>
+                                <p>Turning design concepts into responsive interfaces and paying close attention to
+                                    spacing, hierarchy, states and usability across devices.</p>
+                            </div>
+                        </article>
+
+                        <article class="experience-item">
+                            <span class="experience-year">2023 - 2025</span>
+                            <div class="experience-card">
+                                <p class="panel-label">Studie</p>
+                                <h3>Software Engineering bij Fontys ICT</h3>
+                                <p>A visual background taught me to communicate clearly, shape stronger concepts and
+                                    look at websites as complete experiences instead of isolated pages.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section" id="projects">
+                <div class="section-label">
+                    <span>03.</span>
+                    <p>Projecten</p>
+                </div>
+
+                <div class="section-body showcase-stack">
+                    <article class="showcase-card">
+                        <div class="showcase-copy">
+                            <p class="panel-label">Uitgelicht project</p>
+                            <h3>Portfolio in Umbraco</h3>
+                            <p>
+                                Een persoonlijke website waarin cv, projecten en contactmomenten als een
+                                rustige doorlopende leeservaring samenkomen.
+                            </p>
+                            <ul class="tag-list">
+                                <li>C#</li>
+                                <li>Umbraco</li>
+                                <li>Razor</li>
+                                <li>CSS</li>
+                            </ul>
+                        </div>
+
+                        <div class="showcase-visual">
+                            <figure class="project-placeholder">
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+01"
+                                    alt="Placeholder preview for Portfolio in Umbraco">
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="showcase-card showcase-card-reverse">
+                        <div class="showcase-copy">
+                            <p class="panel-label">Stage opdracht</p>
+                            <h3>CO₂-uitstoot inzichtelijk maken</h3>
+                            <p>
+                                Een onderzoek naar CO₂-uitstoot van taxi's via eigen verbruiksberekeningen
+                                en RDW-data waaruit twee Proof of Concepts zijn ontstaan voor dataverwerking en
+                                visualisatie.
+                            </p>
+                            <ul class="tag-list">
+                                <li>Microservices</li>
+                                <li>.NET</li>
+                                <li>gRPC</li>
+                                <li>Entity Framework</li>
+                            </ul>
+                        </div>
+
+                        <div class="showcase-visual">
+                            <figure class="project-placeholder">
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+02"
+                                    alt="Placeholder preview for Project detail template">
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="showcase-card">
+                        <div class="showcase-copy">
+                            <p class="panel-label">Groepsproject studie</p>
+                            <h3>Webportaal MB-Ontdekt</h3>
+                            <p>
+                                Een webportaal voor het weergeven van data van meetstations met
+                                betrekking tot luchtkwaliteit.
+                            </p>
+                            <ul class="tag-list">
+                                <li>Java Spring Boot</li>
+                                <li>React JS</li>
+                                <li>Docker</li>
+                            </ul>
+                        </div>
+
+                        <div class="showcase-visual">
+                            <figure class="project-placeholder">
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+03"
+                                    alt="Placeholder preview for Compact CMS dashboard">
+                            </figure>
+                        </div>
+                    </article>
+
+                    <article class="showcase-card showcase-card-reverse">
+                        <div class="showcase-copy">
+                            <p class="panel-label">Groepsproject studie</p>
+                            <h3>Smoelenboek Indicia</h3>
+                            <p>
+                                Een interne webapplicatie voor HR waarin medewerkers en hun contactgegevens
+                                eenvoudig geregistreerd konden worden en waar medewerkers elkaar konden vinden.
+                            </p>
+                            <ul class="tag-list">
+                                <li>ASP.NET Core</li>
+                                <li>MVC</li>
+                                <li>SQL</li>
+                            </ul>
+                        </div>
+
+                        <div class="showcase-visual">
+                            <figure class="project-placeholder">
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+04"
+                                    alt="Placeholder preview for Project detail template">
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="content-section" id="archive">
+                <div class="section-label">
+                    <span>04.</span>
+                    <p>Meer projecten</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="archive-grid">
+                        <article class="archive-card">
+                            <span class="archive-icon">UI</span>
+                            <p class="panel-label">UI component</p>
+                            <h3>Skills overview</h3>
+                            <p>A compact module for presenting my tech stack, tooling and strengths in a lightweight
+                                visual grid.</p>
+                        </article>
+
+                        <article class="archive-card">
+                            <span class="archive-icon">CMS</span>
+                            <p class="panel-label">Content block</p>
+                            <h3>About section</h3>
+                            <p>A content block that combines longer introduction copy with visual support while keeping
+                                the page rhythm intact on desktop and mobile.</p>
+                        </article>
+
+                        <article class="archive-card">
+                            <span class="archive-icon">NAV</span>
+                            <p class="panel-label">Navigation</p>
+                            <h3>Sticky section rail</h3>
+                            <p>Small labels and anchors that support the editorial structure and make longer portfolio
+                                pages easier to scan.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- <section class="content-section contact-section-wrap" id="contact">
+                <div class="section-label">
+                    <span>05.</span>
+                    <p>Contact</p>
+                </div>
+
+                <div class="section-body">
+                    <div class="contact-section">
+                        <h2>Contact</h2>
+                        <p>
+                            De basis staat nu als visuele richting. De volgende stap is het omzetten van deze blokken
+                            naar componenten, documenttypes en renderbare content in de portfolio applicatie.
+                        </p>
+                        <a class="button button-primary" href="mailto:chris@example.com">Neem contact op</a>
+                    </div>
+                </div>
+            </section> -->
+        </main>
+    </div>
+
+    <footer class="container-fluid footer-shell px-0">
+        <div class="site-footer d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 py-4">
+            <div class="footer-social d-flex align-items-center gap-3">
+                <a class="footer-icon" href="https://github.com/chrisvt1209" target="_blank" rel="noreferrer"
+                    aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 1.5A10.5 10.5 0 0 0 8.68 21.96c.53.1.72-.23.72-.52v-1.82c-2.95.64-3.58-1.25-3.58-1.25-.48-1.2-1.17-1.52-1.17-1.52-.96-.65.07-.64.07-.64 1.06.08 1.62 1.09 1.62 1.09.95 1.62 2.48 1.15 3.08.88.1-.69.37-1.15.68-1.42-2.36-.27-4.84-1.18-4.84-5.25 0-1.16.42-2.12 1.09-2.87-.1-.27-.47-1.38.1-2.88 0 0 .9-.29 2.96 1.09a10.2 10.2 0 0 1 5.38 0c2.06-1.38 2.96-1.1 2.96-1.1.58 1.5.21 2.62.1 2.89.68.75 1.1 1.71 1.1 2.87 0 4.08-2.49 4.97-4.87 5.23.38.33.72.98.72 1.98v2.94c0 .29.19.63.73.52A10.5 10.5 0 0 0 12 1.5Z" />
+                    </svg>
+                </a>
+                <a class="footer-icon" href="https://linkedin.com/in/chrisvt" target="_blank" rel="noreferrer"
+                    aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M6.94 8.5H3.56V19.5h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.25 5c0 1.11.9 2 2 2s2-.89 2-2c0-1.1-.9-2-2-2Zm6.89 5.5H8.88V19.5h3.26v-5.44c0-1.43.27-2.82 2.04-2.82 1.74 0 1.76 1.63 1.76 2.91v5.35H19.2v-6.01c0-2.95-.64-5.22-4.08-5.22-1.65 0-2.75.91-3.2 1.77h-.05V8.5h.27Z" />
+                    </svg>
                 </a>
             </div>
+
+            <a class="footer-link" href="https://vantiggelen.nl/" target="_blank" rel="noreferrer">
+                vantiggelen.nl
+            </a>
+
+            <a class="footer-email" href="mailto:chris@vantiggelen.nl">chris@vantiggelen.nl</a>
         </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="container py-5">
-        <div class="section-title">
-            <span>03.</span>
-            <h2>Mijn projecten</h2>
-            <hr>
-        </div>
-
-        <!-- PROJECT 1 -->
-        <div class="featured-project">
-            <div class="row align-items-center featured-wrapper">
-                <div class="col-lg-7 featured-image">
-                    <img src="https://placehold.co/600x400?text=Hello+World">
-                </div>
-                <div class="featured-content right">
-                    <div class="featured-label">Gehighlight Project</div>
-                    <div class="featured-title">Portfolio</div>
-                    <div class="featured-description">
-                        Een portfolio gemaakt in C# met een Umbraco CMS
-                    </div>
-                    <div class="featured-tech">
-                        <span class="underline">C#</span> · <span class="underline">Umbraco</span> · <span
-                            class="underline">SASS</span> · <span class="underline">Javascript</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT 2 (mirrored) -->
-        <div class="featured-project">
-            <div class="row align-items-center featured-wrapper">
-                <div class="col-lg-7 offset-lg-5 featured-image">
-                    <img src="https://placehold.co/600x400?text=Hello+World">
-                </div>
-                <div class="featured-content left">
-                    <div class="featured-label">Highlighted Project</div>
-                    <div class="featured-title">Lorem Ipsum</div>
-                    <div class="featured-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Optio nihil dicta recusandae accusantium.
-                    </div>
-                    <div class="featured-tech">
-                        Laravel · Angular · SASS
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT 3 -->
-        <div class="featured-project">
-            <div class="row align-items-center featured-wrapper">
-                <div class="col-lg-7 featured-image">
-                    <img src="https://placehold.co/600x400?text=Hello+World">
-                </div>
-                <div class="featured-content right">
-                    <div class="featured-label">Gehighlight Project</div>
-                    <div class="featured-title">Portfolio</div>
-                    <div class="featured-description">
-                        Een portfolio gemaakt in C# met een Umbraco CMS
-                    </div>
-                    <div class="featured-tech">
-                        C# · Umbraco · SASS · Javascript
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PROJECT 4 (mirrored) -->
-        <div class="featured-project">
-            <div class="row align-items-center featured-wrapper">
-                <div class="col-lg-7 offset-lg-5 featured-image">
-                    <img src="https://placehold.co/600x400?text=Hello+World">
-                </div>
-                <div class="featured-content left">
-                    <div class="featured-label">Highlighted Project</div>
-                    <div class="featured-title">Lorem Ipsum</div>
-                    <div class="featured-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Optio nihil dicta recusandae accusantium.
-                    </div>
-                    <div class="featured-tech">
-                        Laravel · Angular · SASS
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MORE PROJECTS -->
-    <section class="container py-5">
-        <div class="section-title">
-            <span>04.</span>
-            <h2>More Projects</h2>
-            <hr>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card">
-                    <div class="project-card-title">Hands Game</div>
-
-                    <div class="project-card-desc">
-                        Extended rock paper scissors game built in Angular.
-                    </div>
-
-                    <div class="project-card-tags">
-                        Angular · CSS Grid · SASS
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card">
-                    <div class="project-card-title">Countries Viewer</div>
-
-                    <div class="project-card-desc">
-                        Interface consuming a countries API with filtering.
-                    </div>
-
-                    <div class="project-card-tags">
-                        Angular · RxJS · API
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="project-card">
-                    <div class="project-card-title">Profile Card</div>
-
-                    <div class="project-card-desc">
-                        Simple profile card UI component.
-                    </div>
-
-                    <div class="project-card-tags">
-                        Angular · SASS · Git
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </footer>
+    <button class="scroll-top" type="button" aria-label="Scroll back to top">
+        <span></span>
+    </button>
+    <script src="script.js"></script>
 </body>
 
 </html>
