@@ -24,13 +24,14 @@ public static class ApplicationBuilderExtensions
 
                         builder.AddScriptSrc()
                             .Self()
-                            .From("https://*.fontawesome.com")
+                            //.From("https://*.fontawesome.com")
                             .From("blob:")
                             .WithNonce();
 
                         builder.AddStyleSrc()
                             .Self()
-                            .From("https://*.fontawesome.com")
+                            //.From("https://*.fontawesome.com")
+                            .From("fonts.googleapis.com")
                             .WithNonce();
 
                         builder.AddImgSrc()
@@ -42,12 +43,13 @@ public static class ApplicationBuilderExtensions
 
                         builder.AddFontSrc()
                             .Self()
-                            .From("https://*.fontawesome.com");
+                            //.From("https://*.fontawesome.com")
+                            .From("fonts.gstatic.com");
 
 
                         var connectSrc = builder.AddConnectSrc()
                             .Self()
-                            .From("https://*.fontawesome.com")
+                            //.From("https://*.fontawesome.com")
                             .From("ws:")
                             .From("wss:");
 

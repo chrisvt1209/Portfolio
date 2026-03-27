@@ -8,32 +8,4 @@
     if (aboutSection is null) return;
 }
 
-<section class="section about" id="about">
-    <div class="container">
-        <div class="section-box">
-            <div class="about-title">
-                <h3 class="section-title">@aboutSection.SectionTitle</h3>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-6 mb-4 mb-md-0">
-                    <div class="about-description">
-                        @Html.Raw(aboutSection.SectionDescription)
-                        <ul class="skills-list">
-                            @foreach(var skill in aboutSection.TechExperience!)
-                            {
-                                <li class="skill-element">
-                                    <span class="underline">@skill</span>
-                                </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 mt-4 mt-md-0 text-center">
-                    <div class="about-img-container">
-                        <img class="rounded about-image clickable" src="@aboutSection.AboutMePicture!.Url()" alt="Chris" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+

@@ -6,24 +6,28 @@
 
     if (indexPage is null) return;
 }
-<section class="section banner">
-    <div class="container">
-        <div class="section-box-banner">
-            <div class="content">
-                <div class="banner-pretitle">
-                    <h1>@indexPage.IntroductionText</h1>
-                </div>
-                <div class="banner-title">
-                    <h2 class="banner-name">@indexPage.SectionTitle</h2>
-                    <h3 class="banner-subtitle">@indexPage.Expertise</h3>
-                </div>
-                <div class="banner-description">
-                    <div class="mt-4">@Html.Raw(indexPage.SectionDescription)</div>
-                </div>
-            </div>
-            <div class="div-btn-banner">
-                
-            </div>
+
+<section class="hero" id="top">
+    <div class="hero-copy">
+        <p class="eyebrow">@indexPage.HeroIntroductionText</p>
+        <h1 class="hero-name" data-text="@indexPage.HeroNameText" aria-label="@indexPage.HeroNameText">
+            @indexPage.HeroNameText
+        </h1>
+        <h2 class="hero-role">@indexPage.HeroExpertiseText</h2>
+        <p class="hero-text">
+            @Html.Raw(indexPage.HeroDescriptionText)
+        </p>
+
+        <div class="hero-actions d-flex flex-wrap gap-3">
+            <a class="button button-primary" href="#about">@indexPage.HeroButtonAboutMeText</a>
+            <a class="button button-secondary" href="#projects">@indexPage.HeroButtonProjectsText</a>
         </div>
+
+        <ul class="hero-meta" aria-label="Kernpunten">
+            @foreach (var skill in indexPage.HeroHighlightedSkills!)
+            {
+                <li>@skill</li>
+            }
+        </ul>
     </div>
 </section>
