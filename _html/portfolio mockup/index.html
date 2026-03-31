@@ -14,6 +14,9 @@
     <!-- Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+    <!-- Font Awesome Icons -->
+    <link ref="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
     <!-- Google Font (lijkt op template stijl) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -28,20 +31,34 @@
     <div class="container-fluid header-shell px-0">
         <header class="site-header d-flex align-items-center px-4 py-3">
             <a class="brand" href="#top">
-                <span class="brand-mark">CVT</span>
+                <span class="brand-mark brand-mark-terminal" aria-hidden="true">
+                    <span class="brand-prompt">&gt;</span>
+                    <span class="brand-cursor">_</span>
+                    <span class="brand-text" data-text="cvt">cvt</span>
+                </span>
             </a>
 
             <nav class="site-nav d-flex align-items-center justify-content-center gap-4 position-absolute start-50 translate-middle-x"
                 id="site-nav" aria-label="Hoofdnavigatie">
-                <a class="underline" href="#about">over mij</a>
-                <a class="underline" href="#experience">ervaring</a>
-                <a class="underline" href="#projects">projecten</a>
-                <!-- <a class="underline" href="#contact">contact</a> -->
+                <a class="underline" href="#about">Over mij</a>
+                <a class="underline" href="#experience">Ervaring</a>
+                <a class="underline" href="#projects">Projecten</a>
                 <a class="header-cta header-cta-mobile d-lg-none" href="resume.pdf" download>Download CV</a>
             </nav>
 
             <div class="header-actions d-flex align-items-center gap-3 ms-auto">
-                <a class="header-cta d-none d-lg-inline-flex" href="resume.pdf" download>Download CV</a>
+                <a class="header-cta d-none d-lg-inline-flex" href="assets/files/CV Chris van Tiggelen.pdf"
+                    download>Download CV</a>
+                <!-- <div class="dropdown d-none d-lg-block">
+                    <button class="header-select dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Nederlands
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item active" href="#">Nederlands</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div> -->
                 <button class="menu-toggle d-inline-flex d-lg-none align-items-center justify-content-center"
                     type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
                     <span></span>
@@ -78,26 +95,6 @@
                         <li>Focust op C#, web development en Umbraco</li>
                     </ul>
                 </div>
-
-                <!-- <aside class="hero-panel">
-                    <div class="hero-panel-inner">
-                        <p class="panel-label">Quick snapshot</p>
-                        <div class="metric-grid">
-                            <article>
-                                <strong>5+</strong>
-                                <span>years working across design and web development</span>
-                            </article>
-                            <article>
-                                <strong>10</strong>
-                                <span>content-rich websites, UI concepts and portfolio builds</span>
-                            </article>
-                            <article>
-                                <strong>.NET</strong>
-                                <span>main direction with Umbraco and custom front-end work</span>
-                            </article>
-                        </div>
-                    </div>
-                </aside> -->
             </section>
 
             <section class="content-section" id="about">
@@ -110,25 +107,31 @@
                     <div class="text-block">
                         <h2>Iets meer over mij</h2>
                         <p>
-                            I started in a creative environment and gradually moved deeper into development, where I
-                            found the balance between visual thinking and technical problem solving. That mix still
-                            shapes the way I approach every project.
+                            Ik ben altijd iemand geweest die het leuk vindt om bezig te zijn met creatieve dingen.
+                            In de loop van de tijd ben ik gaan ontdekken dat ik het ook interessant vind om dingen
+                            logisch op te bouwen en problemen op te lossen. Daardoor kwam ik uiteindelijk uit bij
+                            softwareontwikkeling, omdat daar voor mij die combinatie van creatief nadenken en praktisch
+                            werken goed samenkomt.
                         </p>
                         <p>
-                            I enjoy building interfaces that feel calm, clear and intentional while staying practical
-                            for editors and future developers. Whether I am working on a portfolio, a CMS-driven site
-                            or a reusable component library, I care about the details that make a product feel solid.
+                            Wat ik vooral leuk vind, is om dingen te maken die duidelijk en prettig werken.
+                            Ik hou ervan om iets stap voor stap op te bouwen en ervoor te zorgen dat het niet alleen
+                            werkt, maar ook overzichtelijk blijft voor mezelf en anderen. Daarnaast vind ik het
+                            interessant om ideeën om te zetten naar iets concreets dat je echt kunt gebruiken.
                         </p>
-                        <p>
-                            Outside the code itself, I like translating rough ideas into structured solutions and
-                            turning visual direction into something that is maintainable, responsive and pleasant to
-                            use.
-                        </p>
+
+                        <ul class="tag-list">
+                            <li class="underline">C#</li>
+                            <li class="underline">Umbraco</li>
+                            <li class="underline">SQL</li>
+                            <li class="underline">Javascript</li>
+                            <li class="underline">SASS</li>
+                            <li class="underline">CI/CD</li>
+                        </ul>
                     </div>
 
                     <figure class="about-portrait">
-                        <img src="https://placehold.co/640x760/111611/39ff88?text=Chris"
-                            alt="Placeholder portrait for Chris van Tiggelen">
+                        <img src="assets/images/chris2_500x500.webp" alt="Chris van Tiggelen">
                     </figure>
                 </div>
             </section>
@@ -146,8 +149,13 @@
                             <div class="experience-card">
                                 <p class="panel-label">Huidige baan</p>
                                 <h3>Web Developer bij Tambien</h3>
-                                <p>Building structured websites with reusable components, clean styling and a strong eye
-                                    for the editor experience behind the scenes.</p>
+                                <p>
+                                    Als web developer bij Tambien werk ik aan software die direct impact heeft op hoe
+                                    bedrijven werken. Van dealerportalen tot planningssystemen: ik help mee om complexe
+                                    vraagstukken te vertalen naar slimme, gebruiksvriendelijke webapplicaties.
+                                    Daarbij draait het niet alleen om techniek, maar vooral om efficiëntie en het
+                                    verbeteren van dagelijkse workflows.
+                                </p>
                             </div>
                         </article>
 
@@ -156,8 +164,12 @@
                             <div class="experience-card">
                                 <p class="panel-label">Afstudeerstage</p>
                                 <h3>Software Developer bij Euphoria Mobility</h3>
-                                <p>Turning design concepts into responsive interfaces and paying close attention to
-                                    spacing, hierarchy, states and usability across devices.</p>
+                                <p>
+                                    Als stagiair bij Euphoria Mobility ontwikkelde ik twee proof-of-concepts waarin
+                                    ik CO₂-uitstoot berekende op basis van brandstofverbruik en RDW data.
+                                    Hiervoor bouwde ik een backend in C# en .NET die verschillende databronnen
+                                    combineerde in een web portaal toont.
+                                </p>
                             </div>
                         </article>
 
@@ -166,8 +178,13 @@
                             <div class="experience-card">
                                 <p class="panel-label">Studie</p>
                                 <h3>Software Engineering bij Fontys ICT</h3>
-                                <p>A visual background taught me to communicate clearly, shape stronger concepts and
-                                    look at websites as complete experiences instead of isolated pages.</p>
+                                <p>
+                                    Tijdens mijn studie bij Fontys ICT heb ik de basis gelegd voor mijn ontwikkeling als
+                                    software developer. Ik werkte aan verschillende projecten waarin ik backend en
+                                    frontend combineerde, met een focus op C#, databases en webontwikkeling. In deze
+                                    periode ontdekte ik mijn interesse in backend development en het bouwen van
+                                    logische, gestructureerde systemen.
+                                </p>
                             </div>
                         </article>
                     </div>
@@ -190,16 +207,16 @@
                                 rustige doorlopende leeservaring samenkomen.
                             </p>
                             <ul class="tag-list">
-                                <li>C#</li>
-                                <li>Umbraco</li>
-                                <li>Razor</li>
-                                <li>CSS</li>
+                                <li class="underline">C#</li>
+                                <li class="underline">Umbraco</li>
+                                <li class="underline">Razor</li>
+                                <li class="underline">CSS</li>
                             </ul>
                         </div>
 
                         <div class="showcase-visual">
                             <figure class="project-placeholder">
-                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+01"
+                                <img src="assets/images/portfolio-website-chris.webp"
                                     alt="Placeholder preview for Portfolio in Umbraco">
                             </figure>
                         </div>
@@ -215,16 +232,16 @@
                                 visualisatie.
                             </p>
                             <ul class="tag-list">
-                                <li>Microservices</li>
-                                <li>.NET</li>
-                                <li>gRPC</li>
-                                <li>Entity Framework</li>
+                                <li class="underline">Microservices</li>
+                                <li class="underline">.NET</li>
+                                <li class="underline">gRPC</li>
+                                <li class="underline">Entity Framework</li>
                             </ul>
                         </div>
 
                         <div class="showcase-visual">
                             <figure class="project-placeholder">
-                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+02"
+                                <img src="assets/images/RDW-koppeling frontend.webp"
                                     alt="Placeholder preview for Project detail template">
                             </figure>
                         </div>
@@ -239,15 +256,15 @@
                                 betrekking tot luchtkwaliteit.
                             </p>
                             <ul class="tag-list">
-                                <li>Java Spring Boot</li>
-                                <li>React JS</li>
-                                <li>Docker</li>
+                                <li class="underline">Java Spring Boot</li>
+                                <li class="underline">React JS</li>
+                                <li class="underline">Docker</li>
                             </ul>
                         </div>
 
                         <div class="showcase-visual">
                             <figure class="project-placeholder">
-                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+03"
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Geen+Preview+Beschikbaar"
                                     alt="Placeholder preview for Compact CMS dashboard">
                             </figure>
                         </div>
@@ -262,15 +279,15 @@
                                 eenvoudig geregistreerd konden worden en waar medewerkers elkaar konden vinden.
                             </p>
                             <ul class="tag-list">
-                                <li>ASP.NET Core</li>
-                                <li>MVC</li>
-                                <li>SQL</li>
+                                <li class="underline">ASP.NET Core</li>
+                                <li class="underline">MVC</li>
+                                <li class="underline">SQL</li>
                             </ul>
                         </div>
 
                         <div class="showcase-visual">
                             <figure class="project-placeholder">
-                                <img src="https://placehold.co/960x640/111611/39ff88?text=Project+Preview+04"
+                                <img src="https://placehold.co/960x640/111611/39ff88?text=Geen+Preview+Beschikbaar"
                                     alt="Placeholder preview for Project detail template">
                             </figure>
                         </div>
@@ -287,27 +304,68 @@
                 <div class="section-body">
                     <div class="archive-grid">
                         <article class="archive-card">
-                            <span class="archive-icon">UI</span>
-                            <p class="panel-label">UI component</p>
-                            <h3>Skills overview</h3>
-                            <p>A compact module for presenting my tech stack, tooling and strengths in a lightweight
-                                visual grid.</p>
+                            <span class="archive-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path
+                                        d="M97.5 400l50-160 379.4 0-50 160-379.4 0zm190.7 48L477 448c21 0 39.6-13.6 45.8-33.7l50-160c9.7-30.9-13.4-62.3-45.8-62.3l-379.4 0c-21 0-39.6 13.6-45.8 33.7L80.2 294.4 80.2 96c0-8.8 7.2-16 16-16l138.7 0c3.5 0 6.8 1.1 9.6 3.2L282.9 112c13.8 10.4 30.7 16 48 16l117.3 0c8.8 0 16 7.2 16 16l48 0c0-35.3-28.7-64-64-64L330.9 80c-6.9 0-13.7-2.2-19.2-6.4L273.3 44.8C262.2 36.5 248.8 32 234.9 32L96.2 32c-35.3 0-64 28.7-64 64l0 288c0 35.3 28.7 64 64 64l192 0z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <p class="panel-label">Externe API</p>
+                            <h3>PokeAPI app</h3>
+                            <p>
+                                Een webpagina die een overzicht van pokemons laat zien. Van
+                                iedere pokemon kun je extra details zien en filteren op naam en types.
+                                De data wordt opgehaald met behulp van de externe PokeApi.
+                            </p>
+
+                            <ul class="tag-list">
+                                <li>API</li>
+                                <li>Javascript</li>
+                                <li>React</li>
+                            </ul>
                         </article>
 
                         <article class="archive-card">
-                            <span class="archive-icon">CMS</span>
-                            <p class="panel-label">Content block</p>
-                            <h3>About section</h3>
-                            <p>A content block that combines longer introduction copy with visual support while keeping
-                                the page rhythm intact on desktop and mobile.</p>
+                            <span class="archive-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path
+                                        d="M97.5 400l50-160 379.4 0-50 160-379.4 0zm190.7 48L477 448c21 0 39.6-13.6 45.8-33.7l50-160c9.7-30.9-13.4-62.3-45.8-62.3l-379.4 0c-21 0-39.6 13.6-45.8 33.7L80.2 294.4 80.2 96c0-8.8 7.2-16 16-16l138.7 0c3.5 0 6.8 1.1 9.6 3.2L282.9 112c13.8 10.4 30.7 16 48 16l117.3 0c8.8 0 16 7.2 16 16l48 0c0-35.3-28.7-64-64-64L330.9 80c-6.9 0-13.7-2.2-19.2-6.4L273.3 44.8C262.2 36.5 248.8 32 234.9 32L96.2 32c-35.3 0-64 28.7-64 64l0 288c0 35.3 28.7 64 64 64l192 0z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                            <p class="panel-label">Webapplicatie</p>
+                            <h3>Game Collectie Systeem</h3>
+                            <p>
+                                Een applicatie waar gebruikers collecties met hun
+                                favoriete games kunnen maken. Een admin functie om games
+                                te kunnen beheren.
+                            </p>
+
+                            <ul class="tag-list">
+                                <li>C#</li>
+                                <li>MVC</li>
+                                <li>SQL</li>
+                            </ul>
                         </article>
 
                         <article class="archive-card">
-                            <span class="archive-icon">NAV</span>
+                            <span class="archive-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                                    <path
+                                        d="M97.5 400l50-160 379.4 0-50 160-379.4 0zm190.7 48L477 448c21 0 39.6-13.6 45.8-33.7l50-160c9.7-30.9-13.4-62.3-45.8-62.3l-379.4 0c-21 0-39.6 13.6-45.8 33.7L80.2 294.4 80.2 96c0-8.8 7.2-16 16-16l138.7 0c3.5 0 6.8 1.1 9.6 3.2L282.9 112c13.8 10.4 30.7 16 48 16l117.3 0c8.8 0 16 7.2 16 16l48 0c0-35.3-28.7-64-64-64L330.9 80c-6.9 0-13.7-2.2-19.2-6.4L273.3 44.8C262.2 36.5 248.8 32 234.9 32L96.2 32c-35.3 0-64 28.7-64 64l0 288c0 35.3 28.7 64 64 64l192 0z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
                             <p class="panel-label">Navigation</p>
-                            <h3>Sticky section rail</h3>
-                            <p>Small labels and anchors that support the editorial structure and make longer portfolio
-                                pages easier to scan.</p>
+                            <h3>Todo app</h3>
+                            <p>
+                                Eenvoudige todo app waar een gebruiker taken aan kan maken,
+                                prioriteit en de status kan updaten. Geïnspireerd door Todoist.
+                            </p>
+
+                            <ul class="tag-list">
+                                <li>Java</li>
+                                <li>Kotlin</li>
+                                <li>Backend</li>
+                            </ul>
                         </article>
                     </div>
                 </div>
@@ -333,35 +391,62 @@
         </main>
     </div>
 
-    <footer class="container-fluid footer-shell px-0">
-        <div class="site-footer d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 py-4">
-            <div class="footer-social d-flex align-items-center gap-3">
-                <a class="footer-icon" href="https://github.com/chrisvt1209" target="_blank" rel="noreferrer"
-                    aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                            d="M12 1.5A10.5 10.5 0 0 0 8.68 21.96c.53.1.72-.23.72-.52v-1.82c-2.95.64-3.58-1.25-3.58-1.25-.48-1.2-1.17-1.52-1.17-1.52-.96-.65.07-.64.07-.64 1.06.08 1.62 1.09 1.62 1.09.95 1.62 2.48 1.15 3.08.88.1-.69.37-1.15.68-1.42-2.36-.27-4.84-1.18-4.84-5.25 0-1.16.42-2.12 1.09-2.87-.1-.27-.47-1.38.1-2.88 0 0 .9-.29 2.96 1.09a10.2 10.2 0 0 1 5.38 0c2.06-1.38 2.96-1.1 2.96-1.1.58 1.5.21 2.62.1 2.89.68.75 1.1 1.71 1.1 2.87 0 4.08-2.49 4.97-4.87 5.23.38.33.72.98.72 1.98v2.94c0 .29.19.63.73.52A10.5 10.5 0 0 0 12 1.5Z" />
-                    </svg>
-                </a>
-                <a class="footer-icon" href="https://linkedin.com/in/chrisvt" target="_blank" rel="noreferrer"
-                    aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                            d="M6.94 8.5H3.56V19.5h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.25 5c0 1.11.9 2 2 2s2-.89 2-2c0-1.1-.9-2-2-2Zm6.89 5.5H8.88V19.5h3.26v-5.44c0-1.43.27-2.82 2.04-2.82 1.74 0 1.76 1.63 1.76 2.91v5.35H19.2v-6.01c0-2.95-.64-5.22-4.08-5.22-1.65 0-2.75.91-3.2 1.77h-.05V8.5h.27Z" />
-                    </svg>
-                </a>
-            </div>
+    <div class="side-rail side-rail-left d-none d-lg-flex" aria-label="Social links">
+        <div class="side-rail-links d-flex flex-column align-items-center gap-3">
+            <a class="footer-icon" href="https://github.com/chrisvt1209" target="_blank" rel="noreferrer"
+                aria-label="GitHub">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M12 1.5A10.5 10.5 0 0 0 8.68 21.96c.53.1.72-.23.72-.52v-1.82c-2.95.64-3.58-1.25-3.58-1.25-.48-1.2-1.17-1.52-1.17-1.52-.96-.65.07-.64.07-.64 1.06.08 1.62 1.09 1.62 1.09.95 1.62 2.48 1.15 3.08.88.1-.69.37-1.15.68-1.42-2.36-.27-4.84-1.18-4.84-5.25 0-1.16.42-2.12 1.09-2.87-.1-.27-.47-1.38.1-2.88 0 0 .9-.29 2.96 1.09a10.2 10.2 0 0 1 5.38 0c2.06-1.38 2.96-1.1 2.96-1.1.58 1.5.21 2.62.1 2.89.68.75 1.1 1.71 1.1 2.87 0 4.08-2.49 4.97-4.87 5.23.38.33.72.98.72 1.98v2.94c0 .29.19.63.73.52A10.5 10.5 0 0 0 12 1.5Z" />
+                </svg>
+            </a>
+            <a class="footer-icon" href="https://linkedin.com/in/chrisvt" target="_blank" rel="noreferrer"
+                aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        d="M6.94 8.5H3.56V19.5h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.25 5c0 1.11.9 2 2 2s2-.89 2-2c0-1.1-.9-2-2-2Zm6.89 5.5H8.88V19.5h3.26v-5.44c0-1.43.27-2.82 2.04-2.82 1.74 0 1.76 1.63 1.76 2.91v5.35H19.2v-6.01c0-2.95-.64-5.22-4.08-5.22-1.65 0-2.75.91-3.2 1.77h-.05V8.5h.27Z" />
+                </svg>
+            </a>
+        </div>
+        <span class="side-rail-line" aria-hidden="true"></span>
+    </div>
 
+    <div class="side-rail side-rail-right d-none d-lg-flex" aria-label="Email address">
+        <a class="side-email" href="mailto:chris@vantiggelen.nl">chris@vantiggelen.nl</a>
+        <span class="side-rail-line" aria-hidden="true"></span>
+    </div>
+
+    <footer class="container-fluid footer-shell px-0">
+        <div class="site-footer d-flex flex-column align-items-center justify-content-center gap-3 py-4">
             <a class="footer-link" href="https://vantiggelen.nl/" target="_blank" rel="noreferrer">
                 vantiggelen.nl
             </a>
 
-            <a class="footer-email" href="mailto:chris@vantiggelen.nl">chris@vantiggelen.nl</a>
+            <div class="footer-mobile d-flex d-lg-none flex-column align-items-center gap-3">
+                <div class="footer-social d-flex align-items-center gap-3">
+                    <a class="footer-icon" href="https://github.com/chrisvt1209" target="_blank" rel="noreferrer"
+                        aria-label="GitHub">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 1.5A10.5 10.5 0 0 0 8.68 21.96c.53.1.72-.23.72-.52v-1.82c-2.95.64-3.58-1.25-3.58-1.25-.48-1.2-1.17-1.52-1.17-1.52-.96-.65.07-.64.07-.64 1.06.08 1.62 1.09 1.62 1.09.95 1.62 2.48 1.15 3.08.88.1-.69.37-1.15.68-1.42-2.36-.27-4.84-1.18-4.84-5.25 0-1.16.42-2.12 1.09-2.87-.1-.27-.47-1.38.1-2.88 0 0 .9-.29 2.96 1.09a10.2 10.2 0 0 1 5.38 0c2.06-1.38 2.96-1.1 2.96-1.1.58 1.5.21 2.62.1 2.89.68.75 1.1 1.71 1.1 2.87 0 4.08-2.49 4.97-4.87 5.23.38.33.72.98.72 1.98v2.94c0 .29.19.63.73.52A10.5 10.5 0 0 0 12 1.5Z" />
+                        </svg>
+                    </a>
+                    <a class="footer-icon" href="https://linkedin.com/in/chrisvt" target="_blank" rel="noreferrer"
+                        aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M6.94 8.5H3.56V19.5h3.38V8.5ZM5.25 3A2.01 2.01 0 0 0 3.25 5c0 1.11.9 2 2 2s2-.89 2-2c0-1.1-.9-2-2-2Zm6.89 5.5H8.88V19.5h3.26v-5.44c0-1.43.27-2.82 2.04-2.82 1.74 0 1.76 1.63 1.76 2.91v5.35H19.2v-6.01c0-2.95-.64-5.22-4.08-5.22-1.65 0-2.75.91-3.2 1.77h-.05V8.5h.27Z" />
+                        </svg>
+                    </a>
+                </div>
+                <a class="footer-email" href="mailto:chris@vantiggelen.nl">chris@vantiggelen.nl</a>
+            </div>
         </div>
     </footer>
     <button class="scroll-top" type="button" aria-label="Scroll back to top">
         <span></span>
     </button>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 

@@ -21,6 +21,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 108px;
 }
 
 body {
@@ -116,6 +117,14 @@ ul {
     top: 0;
     z-index: 30;
     backdrop-filter: blur(16px);
+    transition:
+        box-shadow 0.35s ease,
+        background-color 0.35s ease;
+}
+
+.header-shell.is-scrolled {
+    background: rgba(11, 15, 11, 0.8);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
 }
 
 .site-header {
@@ -130,13 +139,14 @@ ul {
 .brand {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 0;
 }
 
 .brand-mark,
 .brand-name,
 .site-nav a,
 .header-cta,
+.header-select,
 .eyebrow,
 .panel-label,
 .section-label {
@@ -144,23 +154,36 @@ ul {
 }
 
 .brand-mark {
-    width: 42px;
-    height: 42px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--bg-line);
-    border-radius: 50%;
     color: var(--accent);
-    background: rgba(17, 22, 17, 0.82);
-    box-shadow: inset 0 0 0 1px rgba(57, 255, 136, 0.05);
 }
 
-.brand-name {
-    font-size: 0.76rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
+.brand-mark-terminal {
+    gap: 2px;
+    padding: 10px 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-transform: lowercase;
+}
+
+.brand-prompt,
+.brand-cursor {
+    color: var(--accent);
+}
+
+.brand-text {
+    display: inline-block;
+    color: var(--text-main);
+    min-width: 3ch;
+}
+
+.brand-cursor {
+    margin-left: 2px;
+    animation: brand-caret 1s step-end infinite;
 }
 
 .site-nav {
@@ -168,6 +191,10 @@ ul {
     align-items: center;
     gap: 24px;
     min-width: max-content;
+}
+
+.site-nav a {
+    display: inline-block;
 }
 
 .header-actions {
@@ -199,20 +226,24 @@ ul {
 }
 
 .menu-toggle {
-    width: 48px;
-    height: 48px;
+    width: auto;
+    min-width: 44px;
+    min-height: 44px;
     padding: 0;
-    border: 1px solid var(--bg-line);
-    border-radius: 50%;
-    background: rgba(17, 22, 17, 0.78);
-    color: var(--text-main);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--accent);
+    flex-direction: column;
+    gap: 5px;
+    box-shadow: none;
 }
 
 .menu-toggle span {
     display: block;
-    width: 18px;
-    height: 1px;
-    margin: 3px 0;
+    width: 24px;
+    height: 2px;
+    margin: 0;
     background: currentColor;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
@@ -229,8 +260,17 @@ ul {
     transform: translateY(-7px) rotate(-45deg);
 }
 
+.menu-toggle:hover,
+.menu-toggle:focus,
+.menu-toggle:active {
+    color: var(--text-main);
+    background: transparent;
+    box-shadow: none;
+}
+
 .site-nav a,
-.header-cta {
+.header-cta,
+.header-select {
     font-size: 0.78rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -250,6 +290,49 @@ ul {
     border-radius: 999px;
     color: var(--accent);
     background: rgba(17, 22, 17, 0.78);
+}
+
+.header-select {
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 1px solid var(--bg-line);
+    border-radius: 999px;
+    color: var(--text-main);
+    background: rgba(17, 22, 17, 0.78);
+}
+
+.header-select:hover,
+.header-select:focus,
+.header-select:active {
+    border-color: rgba(57, 255, 136, 0.22);
+    color: var(--text-main);
+    background: rgba(17, 22, 17, 0.92);
+    box-shadow: none;
+}
+
+.dropdown-menu {
+    min-width: 180px;
+    padding: 10px 0;
+    border: 1px solid var(--bg-line);
+    border-radius: 18px;
+    background: rgba(11, 15, 11, 0.96);
+    box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28);
+}
+
+.dropdown-item {
+    color: var(--text-secondary);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus,
+.dropdown-item.active,
+.dropdown-item:active {
+    color: var(--text-main);
+    background: rgba(57, 255, 136, 0.08);
 }
 
 .header-cta:hover,
@@ -435,7 +518,9 @@ ul {
     display: grid;
     grid-template-columns: 120px minmax(0, 1fr);
     gap: 36px;
-    padding: 40px 0 12px;
+    padding: 56px 0 24px;
+    margin-bottom: clamp(5.5rem, 10vw, 12rem);
+    scroll-margin-top: 108px;
 }
 
 .section-label {
@@ -449,13 +534,20 @@ ul {
     color: var(--text-secondary);
 }
 
+.section-label p {
+    margin: 0;
+    line-height: 1;
+}
+
 .section-label span {
+    display: inline-block;
     color: var(--accent);
+    line-height: 1;
 }
 
 .section-body {
     display: grid;
-    gap: 22px;
+    gap: 30px;
 }
 
 .section-body-split {
@@ -550,8 +642,8 @@ ul {
     justify-content: center;
     margin-bottom: 18px;
     border-radius: 14px;
-    border: 1px solid var(--bg-line);
-    background: rgba(57, 255, 136, 0.08);
+    /* border: 1px solid var(--bg-line); */
+    /* background: rgba(57, 255, 136, 0.08); */
     color: var(--accent);
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.78rem;
@@ -599,7 +691,7 @@ ul {
     content: "";
     position: absolute;
     left: -30px;
-    top: 12px;
+    top: 6px;
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -612,12 +704,14 @@ ul {
 }
 
 .experience-year {
-    padding-top: 8px;
+    display: block;
+    padding-top: 0;
     font-family: "IBM Plex Mono", monospace;
     font-size: 0.76rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--accent);
+    line-height: 1.2;
 }
 
 .experience-card {
@@ -690,6 +784,20 @@ ul {
     background: rgba(255, 255, 255, 0.02);
 }
 
+.text-block .tag-list,
+.showcase-stack .tag-list {
+    gap: 14px 18px;
+}
+
+.text-block .tag-list li,
+.showcase-stack .tag-list li {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--accent);
+}
+
 .showcase-visual {
     position: relative;
     z-index: 1;
@@ -733,12 +841,53 @@ ul {
     position: relative;
     z-index: 1;
     border-top: 1px solid rgba(57, 255, 136, 0.08);
-    margin-top: 72px;
+    margin-top: 112px;
 }
 
 .site-footer {
     width: min(calc(100% - 48px), var(--shell-width));
     margin: 0 auto;
+}
+
+.side-rail {
+    position: fixed;
+    bottom: 0;
+    z-index: 20;
+    align-items: center;
+    gap: 20px;
+}
+
+.side-rail-left {
+    left: clamp(20px, 4vw, 48px);
+    flex-direction: column;
+}
+
+.side-rail-right {
+    right: clamp(20px, 4vw, 48px);
+    flex-direction: column;
+}
+
+.side-rail-links {
+    gap: 14px;
+}
+
+.side-rail-line {
+    width: 1px;
+    height: 96px;
+    background: linear-gradient(180deg, rgba(57, 255, 136, 0.45), rgba(57, 255, 136, 0.06));
+}
+
+.side-email {
+    color: var(--text-secondary);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.side-email:hover {
+    color: var(--text-main);
 }
 
 .footer-social {
@@ -777,6 +926,10 @@ ul {
     text-align: center;
 }
 
+.footer-mobile {
+    width: 100%;
+}
+
 .footer-icon:hover,
 .footer-link:hover,
 .footer-email:hover {
@@ -785,21 +938,22 @@ ul {
 
 .scroll-top {
     position: fixed;
-    right: 28px;
-    bottom: 28px;
-    width: 54px;
-    height: 54px;
+    left: 50%;
+    right: auto;
+    bottom: 34px;
+    width: 58px;
+    height: 58px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(57, 255, 136, 0.18);
+    border: 0;
     border-radius: 50%;
-    background: rgba(11, 15, 11, 0.88);
+    background: conic-gradient(var(--accent) calc(var(--progress, 0) * 1%), rgba(57, 255, 136, 0.12) 0);
     box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
     color: var(--accent);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(16px);
+    transform: translate(-50%, 16px);
     transition:
         opacity 0.3s ease,
         transform 0.3s ease,
@@ -809,6 +963,15 @@ ul {
     z-index: 40;
 }
 
+.scroll-top::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    border: 1px solid rgba(57, 255, 136, 0.18);
+    background: rgba(11, 15, 11, 0.92);
+}
+
 .scroll-top span {
     width: 12px;
     height: 12px;
@@ -816,22 +979,29 @@ ul {
     border-top: 2px solid currentColor;
     border-left: 2px solid currentColor;
     transform: translateY(3px) rotate(45deg);
+    position: relative;
+    z-index: 1;
 }
 
 .scroll-top.is-visible {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translate(-50%, 0);
 }
 
 .scroll-top:hover {
-    border-color: rgba(57, 255, 136, 0.35);
-    background: rgba(17, 22, 17, 0.96);
+    box-shadow: 0 22px 42px rgba(0, 0, 0, 0.34);
 }
 
 @keyframes blink {
     50% {
         border-color: transparent;
+    }
+}
+
+@keyframes brand-caret {
+    50% {
+        opacity: 0;
     }
 }
 
@@ -897,7 +1067,7 @@ ul {
 
     .site-nav {
         position: absolute !important;
-        top: calc(100% + 12px);
+        top: calc(100% + 10px);
         left: 0 !important;
         right: 0 !important;
         transform: none !important;
@@ -907,12 +1077,13 @@ ul {
         justify-content: flex-start;
         width: 100%;
         min-width: 0;
-        gap: 0;
+        gap: 8px;
         padding: 0;
-        background: rgba(11, 15, 11, 0.96);
+        background: rgba(11, 15, 11, 0.92);
+        backdrop-filter: blur(18px);
         border: 1px solid var(--bg-line);
-        border-radius: 24px;
-        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
+        border-radius: 20px;
+        box-shadow: 0 24px 50px rgba(0, 0, 0, 0.3);
         max-height: 0;
         opacity: 0;
         overflow: hidden;
@@ -921,14 +1092,23 @@ ul {
     }
 
     .site-nav a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
-        padding: 12px 20px;
+        padding: 14px 18px;
+        border-radius: 14px;
+        text-align: center;
+    }
+
+    .site-nav a:hover {
+        background: rgba(57, 255, 136, 0.08);
     }
 
     .site-nav.is-open {
-        max-height: 320px;
+        max-height: 360px;
         opacity: 1;
-        padding: 12px 0;
+        padding: 10px;
         pointer-events: auto;
     }
 
@@ -941,6 +1121,7 @@ ul {
         flex-direction: row;
         align-items: center;
         padding-top: 0;
+        gap: 10px;
     }
 
 }
@@ -964,10 +1145,16 @@ ul {
     }
 
     .scroll-top {
-        right: 18px;
+        left: auto;
+        right: 24px;
         bottom: 18px;
         width: 48px;
         height: 48px;
+        transform: translateY(16px);
+    }
+
+    .scroll-top.is-visible {
+        transform: translateY(0);
     }
 
     .hero-name {
@@ -989,5 +1176,6 @@ ul {
 
     .experience-item::before {
         left: -22px;
+        top: 4px;
     }
 }
