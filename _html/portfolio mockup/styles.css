@@ -49,6 +49,135 @@ body::before {
     pointer-events: none;
 }
 
+body.is-preloading {
+    overflow: hidden;
+}
+
+.header-shell,
+.page-shell,
+.side-rail,
+.footer-shell,
+.scroll-top {
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+body.is-preloading .header-shell,
+body.is-preloading .page-shell,
+body.is-preloading .side-rail,
+body.is-preloading .footer-shell,
+body.is-preloading .scroll-top {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+.site-preloader {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    z-index: 120;
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+body.preloader-complete .site-preloader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.site-preloader-backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(57, 255, 136, 0.1), transparent 28%),
+        radial-gradient(circle at 80% 20%, rgba(57, 255, 136, 0.07), transparent 24%),
+        linear-gradient(180deg, rgba(5, 8, 5, 0.98), rgba(8, 11, 8, 0.98));
+}
+
+.site-preloader-shell {
+    position: relative;
+    width: min(100%, 520px);
+    display: grid;
+    gap: 18px;
+    z-index: 1;
+}
+
+.site-preloader-terminal {
+    position: relative;
+    border-radius: 28px;
+    border: 1px solid rgba(57, 255, 136, 0.12);
+    background:
+        radial-gradient(circle at top right, rgba(57, 255, 136, 0.12), transparent 34%),
+        linear-gradient(180deg, rgba(16, 21, 16, 0.98), rgba(8, 11, 8, 0.98));
+    box-shadow: 0 34px 90px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+}
+
+.site-preloader-chrome {
+    display: inline-flex;
+    gap: 8px;
+    padding: 18px 22px 0;
+}
+
+.site-preloader-chrome span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: rgba(245, 247, 245, 0.2);
+}
+
+.site-preloader-body {
+    padding: 26px 22px 24px;
+}
+
+.site-preloader-line {
+    margin: 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: clamp(0.86rem, 2vw, 1rem);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.site-preloader-line + .site-preloader-line {
+    margin-top: 14px;
+}
+
+.site-preloader-line.is-muted {
+    color: var(--text-secondary);
+    opacity: 0.5;
+    animation: terminal-line-cycle 2.9s infinite;
+}
+
+.site-preloader-line.is-main {
+    color: var(--text-main);
+    animation: terminal-line-cycle 2.9s infinite 0.4s;
+}
+
+.site-preloader-line.is-accent {
+    color: var(--accent);
+    animation: terminal-line-cycle 2.9s infinite 0.8s;
+}
+
+.site-preloader-meter {
+    width: 100%;
+    height: 10px;
+    margin-top: 26px;
+    border-radius: 999px;
+    background: rgba(57, 255, 136, 0.08);
+    overflow: hidden;
+}
+
+.site-preloader-meter span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    border-radius: inherit;
+    background: linear-gradient(90deg, rgba(57, 255, 136, 0.28), var(--accent));
+    animation: terminal-meter 2.9s infinite;
+}
+
 .particle-field {
     position: fixed;
     inset: 0;
@@ -372,7 +501,7 @@ ul {
 
 .hero-name.is-typing,
 .hero-name.is-complete {
-    border-right: 1px solid var(--accent);
+    border-right: 3px solid var(--accent);
     animation: blink 1s step-end infinite;
 }
 
@@ -837,6 +966,40 @@ ul {
     margin-top: 28px;
 }
 
+.site-preloader-prompt {
+    color: var(--accent);
+}
+
+@keyframes terminal-line-cycle {
+    0%,
+    18%,
+    100% {
+        opacity: 0.18;
+        transform: translateY(8px);
+    }
+
+    26%,
+    74% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes terminal-meter {
+    0%,
+    100% {
+        transform: scaleX(0.14);
+    }
+
+    45% {
+        transform: scaleX(1);
+    }
+
+    72% {
+        transform: scaleX(0.62);
+    }
+}
+
 .footer-shell {
     position: relative;
     z-index: 1;
@@ -1177,5 +1340,24 @@ ul {
     .experience-item::before {
         left: -22px;
         top: 4px;
+    }
+
+    .site-preloader-shell {
+        gap: 14px;
+    }
+
+    .site-preloader-body {
+        padding: 22px 18px 20px;
+    }
+
+    .site-preloader-line {
+        white-space: normal;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-preloader-line,
+    .site-preloader-meter span {
+        animation: none !important;
     }
 }

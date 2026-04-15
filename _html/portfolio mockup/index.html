@@ -26,7 +26,28 @@
     <link href="styles.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="is-preloading">
+    <div class="site-preloader" id="site-preloader" aria-hidden="true">
+        <div class="site-preloader-backdrop"></div>
+        <div class="site-preloader-shell">
+            <p class="panel-label">System boot</p>
+            <div class="site-preloader-terminal">
+                <div class="site-preloader-chrome">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="site-preloader-body">
+                    <p class="site-preloader-line is-muted">initializing portfolio.session</p>
+                    <p class="site-preloader-line is-main"><span class="site-preloader-prompt">&gt;</span> cvt / portfolio</p>
+                    <p class="site-preloader-line is-accent">loading about, experience, projects</p>
+                    <div class="site-preloader-meter">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="particle-field" aria-hidden="true"></div>
     <div class="container-fluid header-shell px-0">
         <header class="site-header d-flex align-items-center px-4 py-3">

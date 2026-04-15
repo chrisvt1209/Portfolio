@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const siteNav = document.querySelector("#site-nav");
     const scrollTopButton = document.querySelector(".scroll-top");
     const trackedSections = Array.from(document.querySelectorAll("main section[id]"));
+    const sitePreloader = document.querySelector("#site-preloader");
 
     const typeText = (element, options = {}) => {
         if (!element) {
@@ -64,17 +65,49 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const heroName = document.querySelector(".hero-name");
-    typeText(heroName);
-
-    const brandText = document.querySelector(".brand-text");
-    typeText(brandText, {
-        typingClass: "brand-is-typing",
-        completeClass: "brand-is-complete",
-        intervalMs: 75,
-    });
-
     const particleField = document.querySelector(".particle-field");
+    let hasStartedEntranceAnimations = false;
+    let hasCreatedParticles = false;
+
+    const startEntranceAnimations = () => {
+        if (hasStartedEntranceAnimations) {
+            return;
+        }
+
+        hasStartedEntranceAnimations = true;
+
+        const heroName = document.querySelector(".hero-name");
+        typeText(heroName);
+
+        const brandText = document.querySelector(".brand-text");
+        typeText(brandText, {
+            typingClass: "brand-is-typing",
+            completeClass: "brand-is-complete",
+            intervalMs: 75,
+        });
+    };
+
+    const ensureParticles = () => {
+        if (!particleField || prefersReducedMotion || hasCreatedParticles) {
+            return;
+        }
+
+        hasCreatedParticles = true;
+
+        const particleCount = 28;
+
+        for (let i = 0; i < particleCount; i += 1) {
+            const particle = document.createElement("span");
+            particle.className = "particle";
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.setProperty("--size", `${Math.random() * 3 + 2}px`);
+            particle.style.setProperty("--duration", `${Math.random() * 10 + 12}s`);
+            particle.style.setProperty("--delay", `${Math.random() * -18}s`);
+            particle.style.setProperty("--drift", `${Math.random() * 120 - 60}px`);
+            particleField.appendChild(particle);
+        }
+    };
+
     if (scrollTopButton) {
         const updateScrollTopButton = () => {
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -165,20 +198,51 @@ document.addEventListener("DOMContentLoaded", () => {
         syncHashWithViewport();
     }
 
-    if (!particleField || prefersReducedMotion) {
-        return;
-    }
+    if (sitePreloader) {
+        const preloaderStartTime = Date.now();
+        let hasRevealedPage = false;
+        let shouldSkipPreloader = false;
 
-    const particleCount = 28;
+        try {
+            shouldSkipPreloader = window.sessionStorage.getItem("portfolio-preloader-seen") === "true";
+            window.sessionStorage.setItem("portfolio-preloader-seen", "true");
+        } catch (error) {
+            shouldSkipPreloader = false;
+        }
 
-    for (let i = 0; i < particleCount; i += 1) {
-        const particle = document.createElement("span");
-        particle.className = "particle";
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.setProperty("--size", `${Math.random() * 3 + 2}px`);
-        particle.style.setProperty("--duration", `${Math.random() * 10 + 12}s`);
-        particle.style.setProperty("--delay", `${Math.random() * -18}s`);
-        particle.style.setProperty("--drift", `${Math.random() * 120 - 60}px`);
-        particleField.appendChild(particle);
+        const minimumPreloaderDuration = prefersReducedMotion
+            ? 0
+            : shouldSkipPreloader
+                ? 450
+                : 1650;
+
+        const revealPage = () => {
+            if (hasRevealedPage) {
+                return;
+            }
+
+            hasRevealedPage = true;
+
+            const elapsedTime = Date.now() - preloaderStartTime;
+            const revealDelay = Math.max(0, minimumPreloaderDuration - elapsedTime);
+
+            window.setTimeout(() => {
+                document.body.classList.remove("is-preloading");
+                document.body.classList.add("preloader-complete");
+                startEntranceAnimations();
+                ensureParticles();
+            }, revealDelay);
+        };
+
+        if (prefersReducedMotion) {
+            revealPage();
+        } else {
+            window.addEventListener("load", revealPage);
+        }
+
+        window.setTimeout(revealPage, minimumPreloaderDuration + 600);
+    } else {
+        startEntranceAnimations();
+        ensureParticles();
     }
 });
