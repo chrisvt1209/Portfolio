@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const siteNav = document.querySelector("#site-nav");
     const scrollTopButton = document.querySelector(".scroll-top");
+    const trackedSections = Array.from(document.querySelectorAll("main section[id]"));
 
     const typeText = (element, options = {}) => {
         if (!element) {
@@ -108,6 +109,60 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("scroll", updateHeaderState, { passive: true });
         window.addEventListener("resize", updateHeaderState);
         updateHeaderState();
+    }
+
+    if (trackedSections.length > 0) {
+        let activeHash = window.location.hash;
+
+        const updateLocationHash = (sectionId) => {
+            const nextHash = sectionId ? `#${sectionId}` : "";
+
+            if (nextHash === activeHash) {
+                return;
+            }
+
+            const nextUrl = nextHash || `${window.location.pathname}${window.location.search}`;
+            window.history.replaceState(null, "", nextUrl);
+            activeHash = nextHash;
+        };
+
+        const getCurrentSectionId = () => {
+            const headerOffset = headerShell ? headerShell.offsetHeight : 0;
+            const viewportMarker = Math.min(
+                window.innerHeight - 1,
+                headerOffset + Math.max(120, (window.innerHeight - headerOffset) * 0.35)
+            );
+            const normalizeSectionId = (section) => (section?.id === "top" ? "" : section?.id || "");
+
+            const sectionsWithRects = trackedSections.map((section) => ({
+                section,
+                rect: section.getBoundingClientRect(),
+            }));
+            const currentSection = sectionsWithRects.find(({ rect }) => rect.top <= viewportMarker && rect.bottom > viewportMarker);
+
+            if (currentSection) {
+                return normalizeSectionId(currentSection.section);
+            }
+
+            const previousSection = [...sectionsWithRects]
+                .reverse()
+                .find(({ rect }) => rect.top <= viewportMarker);
+
+            if (!previousSection) {
+                return normalizeSectionId(sectionsWithRects[0]?.section);
+            }
+
+            return normalizeSectionId(previousSection.section);
+        };
+
+        const syncHashWithViewport = () => {
+            updateLocationHash(getCurrentSectionId());
+        };
+
+        window.addEventListener("scroll", syncHashWithViewport, { passive: true });
+        window.addEventListener("resize", syncHashWithViewport);
+        window.addEventListener("load", syncHashWithViewport);
+        syncHashWithViewport();
     }
 
     if (!particleField || prefersReducedMotion) {
