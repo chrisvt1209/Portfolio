@@ -1,4 +1,5 @@
-﻿using Umbraco.Cms.Core;
+﻿using Portfolio.Models.Umbraco;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
 using Umbraco.Cms.Core.Web;
@@ -42,31 +43,31 @@ public class ContentHelper
         return Task.FromResult(node);
     }
 
-    // private IPublishedContent? GetHomeNode() =>
-    //     _publishedContentQuery
-    //         .ContentAtRoot()
-    //         .FirstOrDefault(x => x.ContentType.Alias == Home.ModelTypeAlias);
-    //
-    // private IPublishedContent? GetSettingsNode() =>
-    //     _publishedContentQuery
-    //         .ContentAtRoot()
-    //         .FirstOrDefault(x => x.ContentType.Alias == Settings.ModelTypeAlias);
+    private IPublishedContent? GetHomeNode() =>
+        _publishedContentQuery
+            .ContentAtRoot()
+            .FirstOrDefault(x => x.ContentType.Alias == Home.ModelTypeAlias);
+    
+    private IPublishedContent? GetSettingsNode() =>
+        _publishedContentQuery
+            .ContentAtRoot()
+            .FirstOrDefault(x => x.ContentType.Alias == Settings.ModelTypeAlias);
 
     private TModel? ToModel<TModel>(IPublishedContent? content)
         where TModel : class, IPublishedContent
         => content?.CreateModel(_publishedModelFactory) as TModel;
 
-    // public Task<Home?> GetHomeAsync()
-    // {
-    //     var cache = GetContentCache();
-    //     var home = ToModel<Home>(GetHomeNode());
-    //     return Task.FromResult(home);
-    // }
+    public Task<Home?> GetHomeAsync()
+    {
+        var cache = GetContentCache();
+        var home = ToModel<Home>(GetHomeNode());
+        return Task.FromResult(home);
+    }
     
-    // public Task<Settings?> GetSettingsAsync()
-    // {
-    //     var cache = GetContentCache();
-    //     var settings = ToModel<Settings>(GetSettingsNode());
-    //     return Task.FromResult(settings);
-    // }
+    public Task<Settings?> GetSettingsAsync()
+    {
+        var cache = GetContentCache();
+        var settings = ToModel<Settings>(GetSettingsNode());
+        return Task.FromResult(settings);
+    }
 }

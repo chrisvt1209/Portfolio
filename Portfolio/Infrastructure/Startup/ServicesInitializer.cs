@@ -1,4 +1,5 @@
 ﻿using Portfolio.Infrastructure.Extensions;
+using Portfolio.Infrastructure.Handlers;
 using Portfolio.Infrastructure.Helpers;
 using Portfolio.Services;
 using Portfolio.Infrastructure.Helpers;
@@ -52,6 +53,7 @@ public static partial class ServicesInitializer
         services.ConfigureEsBuild(env.IsDevelopment());
 
         services.AddExceptional(builder.Configuration.GetSection("Exceptional"));
+        services.AddExceptionHandler<GlobalExceptionHandler>();
         services.AddResponseCompression();
         return builder;
     }

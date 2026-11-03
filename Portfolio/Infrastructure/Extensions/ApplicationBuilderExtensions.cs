@@ -4,7 +4,7 @@ public static class ApplicationBuilderExtensions
 {
     public static IApplicationBuilder UseSecurityPolicy(this IApplicationBuilder app, bool isDevelopment)
     {
-        //CSP sucurity headers
+        // CSP security headers
         return app
             .UseWhen(x => !IsBackOffice(x), a =>
             {
