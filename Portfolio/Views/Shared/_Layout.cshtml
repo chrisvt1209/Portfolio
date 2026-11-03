@@ -1,0 +1,43 @@
+﻿@* @using RijksMuseum.Models.Umbraco *@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
+@{
+    var langCode = VariationContextAccessor.VariationContext?.Culture;
+    var languages = await LanguageService.GetAllAsync();
+    // var home = await Content.GetHomeAsync();
+    // var settings = await Content.GetSettingsAsync();
+    // var currentPage = Model as IPage;
+}
+
+<!DOCTYPE html>
+<html lang="@langCode">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1"
+          name="viewport">
+    
+    @* <title>@currentPage?.PageTitle</title> *@
+    @foreach (var language in languages)
+    {
+        if (language.IsoCode != langCode)
+        {
+            <link rel="alternate" hreflang="@language.IsoCode" href="@Model.Url(culture: @language.IsoCode, mode: UrlMode.Absolute)">
+        }
+    }
+    <link rel="alternate" hreflang="x-default" href="@(Model.Url(culture: "en-US", mode: UrlMode.Absolute))" />
+    <link rel="canonical" href="@(Model.Url(mode: UrlMode.Absolute))" />
+    @* <link asp-add-nonce rel="stylesheet" href="/bundles/scss/shared.css" asp-append-version="true" /> *@
+    @await RenderSectionAsync("Style", false)
+</head>
+<body>
+    @RenderBody()
+
+    <script asp-add-nonce>
+        const CURRENT_LANG = '@Html.Raw(langCode)';
+        const DATE_FORMAT = "dd-MM-yyyy";
+        const HOME_URL = '/';
+    </script>
+    @* <script asp-add-nonce src="/bundles/js/main.js" asp-append-version="true"></script> *@
+    @await RenderSectionAsync("Scripts", false)
+    <Esbuild-Script />
+</body>
+</html>

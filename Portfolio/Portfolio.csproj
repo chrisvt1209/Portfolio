@@ -1,0 +1,127 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+
+        <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
+        <CopyRazorGenerateFilesToPublishDirectory>true</CopyRazorGenerateFilesToPublishDirectory>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
+        <RunPostBuildEvent>Always</RunPostBuildEvent>
+        <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+        <YourDestinationDirectory>wwwroot/bundles</YourDestinationDirectory>
+        <YourSourceDirectory>wwwroot/bundles</YourSourceDirectory>
+        <CompressionEnabled>false</CompressionEnabled>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="wwwroot\bundles\**" />
+        <EmbeddedResource Remove="wwwroot\bundles\**" />
+        <Content Remove="wwwroot\bundles\**" />
+        <None Remove="wwwroot\bundles\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\**" CopyToOutputDirectory="Always" />
+        <Content Include="Views\**" CopyToOutputDirectory="Always" />
+        <Content Include="appsettings.json" CopyToPublishDirectory="Always" />
+        <Content Include="wwwroot\**" Exclude="wwroot\assets\js\**" CopyToPublishDirectory="Always" />
+        <Content Include="templates\**" CopyToPublishDirectory="Always" />
+        <Content Include="umbraco-migrations\stylesheets\**" CopyToPublishDirectory="Always" />
+        <Content Include="usync\**" CopyToPublishDirectory="Always" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\Client\umbraco-package.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="App_Plugins\Client\client.js" />
+        <None Include="App_Plugins\Client\client.js.map" />
+        <None Include="App_Plugins\Client\vite.svg" />
+        <None Include="node_modules\.gitkeep" />
+        <None Include="wwwroot\media\.gitkeep" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GoogleAuthenticator" />
+        <PackageReference Include="Microsoft.Web.Xdt" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" />
+        <PackageReference Include="NWebsec.AspNetCore.Middleware" />
+        <PackageReference Include="StackExchange.Exceptional.AspNetCore" />
+        <PackageReference Include="Umbraco.Cms"/>
+        <PackageReference Include="Umbraco.Community.Contentment" />
+        <PackageReference Include="uSync" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\area.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\areas.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\default.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\items.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\area.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\areas.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\default.cshtml" />
+        <UpToDateCheckInput Remove="Views\Partials\blockgrid\items.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="usync\" />
+      <Folder Include="Views\Partials\" />
+      <Folder Include="wwwroot\bundles\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Portfolio.Shared\Portfolio.Shared.csproj" />
+    </ItemGroup>
+
+    <Choose>
+        <When Condition="'$(Configuration)' == 'Tambien Live'">
+            <ItemGroup>
+                <None Include="appsettings.Live.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+                <None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+                <Content Remove="appsettings.*.json;appsettings.json" />
+            </ItemGroup>
+        </When>
+        <When Condition="'$(Configuration)' == 'Tambien Test'">
+            <ItemGroup>
+                <None Include="appsettings.Test.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+                <None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+                <Content Remove="appsettings.*.json;appsettings.json" />
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup>
+                <None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+                <None Include="appsettings.Development.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+            </ItemGroup>
+        </Otherwise>
+    </Choose>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(ConfigurationName) == Debug">
+        <Exec Command="npm run dev" />
+    </Target>
+
+    <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+        <ItemGroup>
+            <FilesToDelete Include="wwwroot/bundles/**/*.*" />
+        </ItemGroup>
+        <!-- Build our single page application content -->
+        <Message Text="Deleting Files @(FilesToDelete)" />
+        <Delete Files="@(FilesToDelete)">
+            <Output TaskParameter="DeletedFiles" ItemName="FilesDeleted" />
+        </Delete>
+        <Message Text="Files deleted: @(FilesDeleted)" />
+    </Target>
+
+    <Target Name="NpmPublish" AfterTargets="PrepublishScript">
+        <Exec Command="npm run prod" />
+
+        <CreateItem Include="$(YourSourceDirectory)\**\*.*">
+            <Output TaskParameter="Include" ItemName="YourFilesToCopy" />
+        </CreateItem>
+
+        <Copy SourceFiles="@(YourFilesToCopy)" DestinationFiles="@(YourFilesToCopy->'$(PublishDir)/$(YourDestinationDirectory)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    </Target>
+</Project>

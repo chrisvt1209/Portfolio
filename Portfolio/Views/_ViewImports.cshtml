@@ -1,0 +1,9 @@
+@using Portfolio.Infrastructure.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Services
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, Portfolio
+@addTagHelper *, NetEscapades.AspNetCore.SecurityHeaders.TagHelpers
+@inject IVariationContextAccessor VariationContextAccessor
+@inject ILanguageService LanguageService
+@inject ContentHelper Content

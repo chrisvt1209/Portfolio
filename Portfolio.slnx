@@ -1,6 +1,4 @@
 <Solution>
-  <Folder Name="/Solution Items/">
-    <File Path=".editorconfig" />
-  </Folder>
-  <Project Path="PortfolioApp/PortfolioApp.csproj" />
+  <Project Path="Portfolio.Shared/Portfolio.Shared.csproj" />
+  <Project Path="Portfolio/Portfolio.csproj" />
 </Solution>
