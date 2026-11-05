@@ -8,6 +8,13 @@
     </div>
 
     <div class="section-body">
+        <div class="text-block">
+            <h2>@Model.TxtHeader</h2>
+            @if (!string.IsNullOrEmpty(Model.Body?.ToString()))
+            {
+                @Html.Raw(Model.Body)
+            }
+        </div>
         <div class="experience-rail">
             @{ var index = -1; }
             @foreach (var item in Model.ExperiencesBlockList!)

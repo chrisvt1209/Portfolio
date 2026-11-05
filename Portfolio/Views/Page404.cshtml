@@ -1,4 +1,45 @@
-﻿@inherits UmbracoViewPage<Page404ViewModel>
+@inherits UmbracoViewPage<Page404ViewModel>
+@{
+    var home = await Content.GetHomeAsync();
+    var settings = await Content.GetSettingsAsync();
+    var requestedPath = Context.Request.Path.Value;
+}
 
-<h2>@Model.Title</h2>
-@Html.Raw(Model.Body)
+<div class="page-shell">
+    <main>
+        <section class="error-page" id="top">
+            <div class="error-terminal">
+                <div class="site-preloader-chrome">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="error-terminal-body">
+                    <p class="error-line is-muted">$ cd <span class="error-path">@requestedPath</span></p>
+                    <p class="error-line is-error">bash: no such page (404)</p>
+
+                    <p class="error-code" aria-hidden="true">404</p>
+
+                    <h1 class="error-title">@Model.Title</h1>
+                    <div class="error-text">@Model.Body</div>
+
+                    <div class="hero-actions d-flex flex-wrap gap-3">
+                        <a class="button button-primary" href="@(home?.Url() ?? "/")">
+                            <span class="error-prompt">&gt;</span>&nbsp;@(home?.Name ?? "Home")
+                        </a>
+                    </div>
+
+                    <p class="error-line is-accent error-cursor-line">
+                        <span class="error-prompt">&gt;</span> <span class="brand-cursor">_</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+@if (settings is not null)
+{
+    <partial name="~/Views/Partials/_Footer.cshtml" model="settings" />
+}

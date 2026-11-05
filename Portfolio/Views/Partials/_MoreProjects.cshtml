@@ -9,6 +9,13 @@
     </div>
 
     <div class="section-body">
+        <div class="text-block">
+            <h2>@Model.TxtHeader</h2>
+            @if (!string.IsNullOrEmpty(Model.Body?.ToString()))
+            {
+                @Html.Raw(Model.Body)
+            }
+        </div>
         <div class="archive-grid">
             @foreach (var item in Model.MoreProjectsBlockList!)
             {
@@ -16,6 +23,7 @@
                 {
                     continue;
                 }
+
                 <article class="archive-card">
                     <span class="archive-icon"><i class="@IconHelper.GetFontAwesomeClass(archive.Icon)" aria-hidden="true"></i></span>
                     <p class="panel-label">@archive.TxtEyebrow</p>

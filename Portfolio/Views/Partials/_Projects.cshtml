@@ -12,6 +12,13 @@
     </div>
 
     <div class="section-body showcase-stack">
+        <div class="text-block">
+            <h2>@Model.TxtHeader</h2>
+            @if (!string.IsNullOrEmpty(Model.Body?.ToString()))
+            {
+                @Html.Raw(Model.Body)
+            }
+        </div>
         @foreach (var item in Model.ProjectsBlockList!)
         {
             if (item.Content is not ProjectItem projectItem)
