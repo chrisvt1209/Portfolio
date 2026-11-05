@@ -39,6 +39,32 @@
             <div class="header-actions d-flex align-items-center gap-3 ms-auto">
                 <a class="header-cta d-none d-lg-inline-flex" href="@cvUrl"
                    download>@settings?.BtnDownloadCv</a>
+                <div class="theme-toggle">
+                    <button class="theme-toggle-button" type="button" aria-haspopup="true" aria-expanded="false"
+                            aria-controls="theme-menu" aria-label="Change accent color" title="Change accent color">
+                        <span class="theme-swatch"></span>
+                    </button>
+                    <div class="theme-menu" id="theme-menu" role="group" aria-label="Accent color">
+                            <button class="theme-option" type="button" data-theme-value="green" aria-label="Green" title="Green">
+                                <span class="theme-swatch"></span>
+                            </button>
+                            <button class="theme-option" type="button" data-theme-value="teal" aria-label="Teal" title="Teal">
+                                <span class="theme-swatch"></span>
+                            </button>
+                            <button class="theme-option" type="button" data-theme-value="blue" aria-label="Blue" title="Blue">
+                                <span class="theme-swatch"></span>
+                            </button>
+                            <button class="theme-option" type="button" data-theme-value="violet" aria-label="Violet" title="Violet">
+                                <span class="theme-swatch"></span>
+                            </button>
+                            <button class="theme-option" type="button" data-theme-value="amber" aria-label="Amber" title="Amber">
+                                <span class="theme-swatch"></span>
+                            </button>
+                            <button class="theme-option" type="button" data-theme-value="rose" aria-label="Rose" title="Rose">
+                                <span class="theme-swatch"></span>
+                            </button>
+                    </div>
+                </div>
                 <!-- <div class="dropdown d-none d-lg-block">
                     <button class="header-select dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">

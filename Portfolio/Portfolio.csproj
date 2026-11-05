@@ -99,20 +99,26 @@
         </Otherwise>
     </Choose>
 
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent" Condition="$(ConfigurationName) == Debug">
-        <Exec Command="npm run dev" />
+    <Target Name="BuildBundles" BeforeTargets="CopyFilesToOutputDirectory" Condition="'$(Configuration)' == 'Debug'">
+        <Exec Command="npm run dev"/>
     </Target>
 
-    <Target Name="PrepublishScript" BeforeTargets="PrepareForPublish" Condition=" '$(IsCrossTargetingBuild)' != 'true' ">
+    <Target Name="PrepublishScript" BeforeTargets="Publish">
+        <Exec Command="npm run prod" ContinueOnError="false"/>
+        <RemoveDir Directories="$(IntermediateOutputPath)staticwebassets"/>
         <ItemGroup>
-            <FilesToDelete Include="wwwroot/bundles/**/*.*" />
+            <BundleFiles Include="wwwroot\bundles\**\*.*"/>
         </ItemGroup>
-        <!-- Build our single page application content -->
-        <Message Text="Deleting Files @(FilesToDelete)" />
-        <Delete Files="@(FilesToDelete)">
-            <Output TaskParameter="DeletedFiles" ItemName="FilesDeleted" />
-        </Delete>
-        <Message Text="Files deleted: @(FilesDeleted)" />
+        <Copy SourceFiles="@(BundleFiles)" DestinationFolder="$([MSBuild]::EnsureTrailingSlash('$(PublishDir)'))wwwroot\bundles\%(RecursiveDir)" SkipUnchangedFiles="true" ContinueOnError="false"/>
+    </Target>
+
+    <Target Name="CleanStaticWebAssets" BeforeTargets="Build">
+        <RemoveDir Directories="$(IntermediateOutputPath)staticwebassets"/>
+    </Target>
+
+    <Target Name="DeleteScopedCssAssetsAfterPublish" AfterTargets="AfterPublish">
+        <RemoveDir Directories="$(PublishDir)/wwwroot/assets/js"/>
+        <RemoveDir Directories="$(PublishDir)/wwwroot/assets/scss"/>
     </Target>
 
     <Target Name="NpmPublish" AfterTargets="PrepublishScript">

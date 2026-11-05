@@ -37,8 +37,7 @@ public static class ApplicationBuilderExtensions
 
                         builder.AddImgSrc()
                             .Self()
-                            .From("data:")
-                            .From("https://placehold.co");
+                            .From("data:");
 
                         builder.AddFormAction()
                             .Self();

@@ -17,12 +17,20 @@
           name="viewport">
     
     <title>@currentPage?.PageTitle | @settings?.TxtFullName</title>
+    <meta-fields></meta-fields>
     
-    <link rel="icon" href="/icons/favicon.ico" sizes="16x16 32x32 48x48">
-    <link rel="icon" href="/icons/favicon-32x32.png" type="image/png" sizes="32x32">
-    <link rel="icon" href="/icons/favicon-192x192.png" type="image/png" sizes="192x192">
-    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <link rel="icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48">
+    <link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="icons/favicon-192x192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
     <meta name="theme-color" content="#0b0f0b">
+
+    <script asp-add-nonce>
+        try {
+            const theme = localStorage.getItem("portfolio-theme");
+            if (theme) document.documentElement.dataset.theme = theme;
+        } catch (e) { }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +42,6 @@
         }
     }
     <link rel="alternate" hreflang="x-default" href="@(Model.Url(culture: "en-US", mode: UrlMode.Absolute))" />
-    <link rel="canonical" href="@(Model.Url(mode: UrlMode.Absolute))" />
     <link nonce="@ViewContext.HttpContext.GetNonce()" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
     <link nonce="@ViewContext.HttpContext.GetNonce()" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link nonce="@ViewContext.HttpContext.GetNonce()"
@@ -43,8 +50,10 @@
     
     <link asp-add-nonce rel="stylesheet" href="bundles/scss/styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Style", false)
+    <render-script position="HeadBottom"></render-script>
 </head>
 <body>
+    <render-script position="BodyTop"></render-script>
     <div class="site-preloader" id="site-preloader" aria-hidden="true">
         <div class="site-preloader-backdrop"></div>
         <div class="site-preloader-shell">
@@ -79,6 +88,7 @@
         </script>
     <script asp-add-nonce type="module" src="bundles/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", false)
+    <render-script position="BodyBottom"></render-script>
     <Esbuild-Script nonce="@ViewContext.HttpContext.GetNonce()"/>
 </body>
 </html>

@@ -1,15 +1,10 @@
-﻿@using Portfolio.Models.Umbraco;
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@using Portfolio.Models.Umbraco
 @inherits UmbracoViewPage<HomeViewModel>
+@inject IPublishedValueFallback PublishedValueFallback
 @{
-	var sectionActions = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-	{
-		[About.ModelTypeAlias] = "GetAbout",
-		[Experience.ModelTypeAlias] = "GetExperience",
-		[Projects.ModelTypeAlias] = "GetProjects",
-		[MoreProjects.ModelTypeAlias] = "GetMoreProjects",
-	};
-
-	var settings = await Content.GetSettingsAsync();
+	var settings = await Content.GetSettingsModelAsync();
+	var position = 0;
 }
 
 <partial name="~/Views/Partials/_Header.cshtml" model="Model"/>
@@ -17,15 +12,28 @@
 <div class="page-shell">
 	<main>
 		<partial name="~/Views/Partials/_Hero.cshtml" model="Model" />
-		@{ var position = 0; }
 		@foreach (var child in Model.Children())
 		{
-			if (sectionActions.TryGetValue(child.ContentType.Alias, out var action))
+			(string PartialName, object Model)? section = child.ContentType.Alias switch
 			{
-				position++;
-				var url = Url.Content($"~/umbraco/surface/SectionSurface/{action}") + $"?position={position}";
-				<div class="section-slot" data-section="@child.ContentType.Alias" data-url="@url" data-title="@((child as IPage)?.PageTitle)"></div>
+				var alias when alias == About.ModelTypeAlias => ("_About", new AboutViewModel(child, PublishedValueFallback)),
+				var alias when alias == Experience.ModelTypeAlias => ("_Experience", new ExperienceViewModel(child, PublishedValueFallback)),
+				var alias when alias == Projects.ModelTypeAlias => ("_Projects", new ProjectsViewModel(child, PublishedValueFallback)),
+				var alias when alias == MoreProjects.ModelTypeAlias => ("_MoreProjects", new MoreProjectsViewModel(child, PublishedValueFallback)),
+				_ => null
+			};
+
+			if (section is null)
+			{
+				continue;
 			}
+
+			position++;
+			var sectionViewData = new ViewDataDictionary(ViewData) { ["SectionNumber"] = $"{position:00}." };
+
+			<div class="section-slot is-loaded" data-section="@child.ContentType.Alias" data-title="@((child as IPage)?.PageTitle)">
+				<partial name="@($"~/Views/Partials/{section.Value.PartialName}.cshtml")" model="section.Value.Model" view-data="sectionViewData" />
+			</div>
 		}
 	</main>
 </div>

@@ -108,6 +108,62 @@
         }
     };
 
+    const themeToggle = document.querySelector(".theme-toggle");
+
+    if (themeToggle) {
+        const themeButton = themeToggle.querySelector(".theme-toggle-button");
+        const themeMenu = themeToggle.querySelector(".theme-menu");
+        const themeOptions = Array.from(themeMenu.querySelectorAll(".theme-option"));
+        const defaultTheme = "green";
+
+        const setMenuOpen = (isOpen) => {
+            themeMenu.classList.toggle("is-open", isOpen);
+            themeButton.setAttribute("aria-expanded", String(isOpen));
+        };
+
+        const applyTheme = (theme) => {
+            const option = themeOptions.find((item) => item.dataset.themeValue === theme)
+                ?? themeOptions.find((item) => item.dataset.themeValue === defaultTheme);
+
+            if (!option) {
+                return;
+            }
+
+            document.documentElement.dataset.theme = option.dataset.themeValue;
+            themeOptions.forEach((item) => item.classList.toggle("is-active", item === option));
+        };
+
+        let savedTheme = defaultTheme;
+        try {
+            savedTheme = window.localStorage.getItem("portfolio-theme") || defaultTheme;
+        } catch (error) { }
+        applyTheme(savedTheme);
+
+        themeButton.addEventListener("click", () => setMenuOpen(!themeMenu.classList.contains("is-open")));
+
+        themeOptions.forEach((option) => {
+            option.addEventListener("click", () => {
+                applyTheme(option.dataset.themeValue);
+                try {
+                    window.localStorage.setItem("portfolio-theme", option.dataset.themeValue);
+                } catch (error) { }
+                setMenuOpen(false);
+            });
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!themeToggle.contains(event.target)) {
+                setMenuOpen(false);
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setMenuOpen(false);
+            }
+        });
+    }
+
     const brandLink = document.querySelector(".brand");
 
     if (brandLink) {
@@ -283,35 +339,3 @@
         ensureParticles();
     }
 });
-
-
-// Secties: haal de HTML-fragmenten op bij SectionSurfaceController en plaats ze in hun slot.
-(function () {
-    const initialHash = window.location.hash;
-    const slots = document.querySelectorAll('.section-slot[data-url]');
-
-    const requests = Array.from(slots).map(function (slot) {
-        return fetch(slot.dataset.url)
-            .then(function (response) {
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                return response.text();
-            })
-            .then(function (html) {
-                slot.innerHTML = html;
-                slot.classList.add('is-loaded');
-            })
-            .catch(function (error) {
-                slot.classList.add('is-error');
-                console.error('Sectie laden mislukt: ' + slot.dataset.url, error);
-            });
-    });
-
-    Promise.all(requests).then(function () {
-        // Secties bestaan pas nu: herstel de scrollpositie van de hash en sync de URL.
-        if (initialHash) {
-            document.querySelector(initialHash)?.scrollIntoView();
-        }
-
-        window.dispatchEvent(new Event('scroll'));
-    });
-})();

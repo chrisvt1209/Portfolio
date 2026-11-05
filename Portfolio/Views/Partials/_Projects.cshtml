@@ -2,7 +2,6 @@
 @using Portfolio.Models.Umbraco
 @inherits UmbracoViewPage<ProjectsViewModel>
 @{
-    const string placeholderImage = "https://placehold.co/960x640/111611/39ff88?text=Geen+Preview+Beschikbaar";
     var index = -1;
 }
 <section class="content-section" id="projects">
@@ -44,8 +43,16 @@
 
                 <div class="showcase-visual">
                     <figure class="project-placeholder">
-                        <img src="@(string.IsNullOrWhiteSpace(imageUrl) ? placeholderImage : imageUrl)"
-                             alt="@(string.IsNullOrWhiteSpace(imageUrl) ? $"Placeholder preview for {projectItem.TxtTitle}" : projectItem.TxtTitle)">
+                        @if (string.IsNullOrWhiteSpace(imageUrl))
+                        {
+                            <div class="project-placeholder-empty" role="img" aria-label="@projectItem.TxtTitle">
+                                <span>Geen Preview Beschikbaar</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <img src="@imageUrl" alt="@projectItem.TxtTitle">
+                        }
                     </figure>
                 </div>
             </article>

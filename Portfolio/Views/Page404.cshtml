@@ -1,7 +1,7 @@
-@inherits UmbracoViewPage<Page404ViewModel>
+﻿@inherits UmbracoViewPage<Page404ViewModel>
 @{
     var home = await Content.GetHomeAsync();
-    var settings = await Content.GetSettingsAsync();
+    var settings = await Content.GetSettingsModelAsync();
     var requestedPath = Context.Request.Path.Value;
 }
 

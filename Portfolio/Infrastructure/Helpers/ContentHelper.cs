@@ -1,4 +1,5 @@
-﻿using Portfolio.Models.Umbraco;
+﻿using Portfolio.Models;
+using Portfolio.Models.Umbraco;
 using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.PublishedCache;
@@ -11,13 +12,15 @@ public class ContentHelper
     private readonly IUmbracoContextAccessor _umbracoContextAccessor;
     private readonly IPublishedModelFactory _publishedModelFactory;
     private readonly IPublishedContentQuery _publishedContentQuery;
+    private readonly IPublishedValueFallback _publishedValueFallback;
 
 
-    public ContentHelper(IUmbracoContextAccessor umbracoContextAccessor, IPublishedModelFactory publishedModelFactory, IPublishedContentQuery publishedContentQuery)
+    public ContentHelper(IUmbracoContextAccessor umbracoContextAccessor, IPublishedModelFactory publishedModelFactory, IPublishedContentQuery publishedContentQuery, IPublishedValueFallback publishedValueFallback)
     {
         _umbracoContextAccessor = umbracoContextAccessor;
         _publishedModelFactory = publishedModelFactory;
         _publishedContentQuery = publishedContentQuery;
+        _publishedValueFallback = publishedValueFallback;
     }
 
     private IPublishedContentCache GetContentCache()
@@ -69,5 +72,12 @@ public class ContentHelper
         var cache = GetContentCache();
         var settings = ToModel<Settings>(GetSettingsNode());
         return Task.FromResult(settings);
+    }
+
+    public Task<SettingsModel?> GetSettingsModelAsync()
+    {
+        var node = GetSettingsNode();
+        var model = node is null ? null : new SettingsModel(node, _publishedValueFallback);
+        return Task.FromResult(model);
     }
 }

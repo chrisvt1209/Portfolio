@@ -1,4 +1,5 @@
 ﻿using Portfolio.Infrastructure.Extensions;
+using SixLabors.ImageSharp.Web.DependencyInjection;
 
 namespace Portfolio.Infrastructure.Startup;
 
@@ -23,7 +24,7 @@ public static class MiddlewareInitializer
                            });
 
         app.UseXContentTypeOptions();
-        app.UseXXssProtection(options => options.Disabled());
+        // app.UseXXssProtection(options => options.Disabled());
 
         app.Use((context, next) =>
         {
@@ -40,6 +41,8 @@ public static class MiddlewareInitializer
             {
                 context.Response.Headers.Append("Cache-Control", "max-age=31536000");
             }
+            
+            context.Response.Headers.Append("X-Frame-Options", "SAMEORIGIN");
 
             return next();
         });
@@ -49,7 +52,10 @@ public static class MiddlewareInitializer
         app.UseSession();
         app.UseHttpsRedirection();
         app.UseResponseCompression();
-        app.UseStaticFiles();
+        app.UseImageSharp();
+        app.UseWhen(
+            context => !context.Request.Path.StartsWithSegments("/media", StringComparison.OrdinalIgnoreCase),
+            a => a.UseStaticFiles());
 
         app.UseRouting();
         if (env.IsDevelopment())
