@@ -108,6 +108,24 @@
         }
     };
 
+    const brandLink = document.querySelector(".brand");
+
+    if (brandLink) {
+        brandLink.addEventListener("click", (event) => {
+            const targetPath = new URL(brandLink.href, window.location.href).pathname;
+
+            if (targetPath !== window.location.pathname) {
+                return;
+            }
+
+            event.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion ? "auto" : "smooth",
+            });
+        });
+    }
+
     if (scrollTopButton) {
         const updateScrollTopButton = () => {
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -147,7 +165,22 @@
     {
         let activeHash = window.location.hash;
 
+        const siteName = document.documentElement.dataset.siteName;
+        const homeTitle = document.title;
+
+        const updateDocumentTitle = (sectionId) => {
+            const sectionTitle = sectionId
+                ? document.getElementById(sectionId)?.closest(".section-slot")?.dataset.title
+                : "";
+
+            document.title = sectionTitle
+                ? (siteName ? `${sectionTitle} | ${siteName}` : sectionTitle)
+                : homeTitle;
+        };
+
         const updateLocationHash = (sectionId) => {
+            updateDocumentTitle(sectionId);
+
             const nextHash = sectionId ? `#${sectionId}` : "";
 
             if (nextHash === activeHash) {

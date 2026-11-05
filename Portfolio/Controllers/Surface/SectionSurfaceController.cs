@@ -31,27 +31,29 @@ public class SectionSurfaceController : SurfaceController
         _publishedValueFallback = publishedValueFallback;
     }
 
-    public IActionResult GetAbout() =>
-        RenderSection(About.ModelTypeAlias, "_About.cshtml",
+    public IActionResult GetAbout(int position = 1) =>
+        RenderSection(About.ModelTypeAlias, "_About.cshtml", position,
             content => new AboutViewModel(content, _publishedValueFallback));
     
-    public IActionResult GetExperience() =>
-        RenderSection(Experience.ModelTypeAlias, "_Experience.cshtml",
+    public IActionResult GetExperience(int position = 1) =>
+        RenderSection(Experience.ModelTypeAlias, "_Experience.cshtml", position,
             content => new ExperienceViewModel(content, _publishedValueFallback));
     
-    public IActionResult GetProjects() =>
-        RenderSection(Projects.ModelTypeAlias, "_Projects.cshtml",
+    public IActionResult GetProjects(int position = 1) =>
+        RenderSection(Projects.ModelTypeAlias, "_Projects.cshtml", position,
             content => new ProjectsViewModel(content, _publishedValueFallback));
     
-    public IActionResult GetMoreProjects() =>
-        RenderSection(MoreProjects.ModelTypeAlias, "_MoreProjects.cshtml",
+    public IActionResult GetMoreProjects(int position = 1) =>
+        RenderSection(MoreProjects.ModelTypeAlias, "_MoreProjects.cshtml", position,
             content => new MoreProjectsViewModel(content, _publishedValueFallback));
 
-    private IActionResult RenderSection(string contentTypeAlias, string viewName,
+    private IActionResult RenderSection(string contentTypeAlias, string viewName, int position,
         Func<IPublishedContent, object> createModel)
     {
         IPublishedContent? content = FindSection(contentTypeAlias);
         
+        ViewData["SectionNumber"] = $"{Math.Max(position, 1):00}.";
+
         return content is null
             ? NotFound()
             : PartialView($"/Views/Partials/{viewName}", createModel(content));

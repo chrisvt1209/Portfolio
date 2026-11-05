@@ -96,5 +96,37 @@ namespace Portfolio.Models.Umbraco
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("txtInitials")]
 		public virtual string TxtInitials => this.Value<string>(_publishedValueFallback, "txtInitials");
+
+		///<summary>
+		/// Panel label
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtPanelLabel")]
+		public virtual string TxtPanelLabel => this.Value<string>(_publishedValueFallback, "txtPanelLabel");
+
+		///<summary>
+		/// Preloader line accent
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtPreloaderLineAccent")]
+		public virtual string TxtPreloaderLineAccent => this.Value<string>(_publishedValueFallback, "txtPreloaderLineAccent");
+
+		///<summary>
+		/// Preloader line main
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtPreloaderLineMain")]
+		public virtual string TxtPreloaderLineMain => this.Value<string>(_publishedValueFallback, "txtPreloaderLineMain");
+
+		///<summary>
+		/// Preloader line muted
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtPreloaderLineMuted")]
+		public virtual string TxtPreloaderLineMuted => this.Value<string>(_publishedValueFallback, "txtPreloaderLineMuted");
 	}
 }

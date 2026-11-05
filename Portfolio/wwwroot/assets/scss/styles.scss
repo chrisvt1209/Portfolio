@@ -356,6 +356,31 @@ ul {
   left: 0;
 }
 
+/* Nav variant: more space between the text and the line */
+.underline-spaced {
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.underline-spaced::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  height: 1px;
+  background: var(--accent);
+  transition: width .35s cubic-bezier(.4,0,.2,1),
+  left .35s cubic-bezier(.4,0,.2,1);
+}
+
+.underline-spaced:hover::after {
+  width: 100%;
+  left: 0;
+}
+
 .menu-toggle {
   width: auto;
   min-width: 44px;
@@ -830,11 +855,12 @@ ul {
   align-items: start;
 }
 
-.experience-item::before {
+.experience-year::before {
   content: "";
   position: absolute;
   left: -30px;
-  top: 6px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -847,6 +873,7 @@ ul {
 }
 
 .experience-year {
+  position: relative;
   display: block;
   padding-top: 0;
   font-family: "IBM Plex Mono", monospace;
@@ -1351,9 +1378,8 @@ ul {
     padding-left: 22px;
   }
 
-  .experience-item::before {
+  .experience-year::before {
     left: -22px;
-    top: 4px;
   }
 
   .site-preloader-shell {

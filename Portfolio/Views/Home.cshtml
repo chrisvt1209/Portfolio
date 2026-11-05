@@ -17,12 +17,14 @@
 <div class="page-shell">
 	<main>
 		<partial name="~/Views/Partials/_Hero.cshtml" model="Model" />
+		@{ var position = 0; }
 		@foreach (var child in Model.Children())
 		{
 			if (sectionActions.TryGetValue(child.ContentType.Alias, out var action))
 			{
-				var url = Url.Content($"~/umbraco/surface/SectionSurface/{action}");
-				<div class="section-slot" data-section="@child.ContentType.Alias" data-url="@url"></div>
+				position++;
+				var url = Url.Content($"~/umbraco/surface/SectionSurface/{action}") + $"?position={position}";
+				<div class="section-slot" data-section="@child.ContentType.Alias" data-url="@url" data-title="@((child as IPage)?.PageTitle)"></div>
 			}
 		}
 	</main>
