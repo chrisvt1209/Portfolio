@@ -49,6 +49,7 @@
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" />
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" />
         <PackageReference Include="NWebsec.AspNetCore.Middleware" />
+        <PackageReference Include="SeoToolkit.Umbraco" />
         <PackageReference Include="StackExchange.Exceptional.AspNetCore" />
         <PackageReference Include="Umbraco.Cms"/>
         <PackageReference Include="Umbraco.Community.Contentment" />
@@ -68,7 +69,6 @@
 
     <ItemGroup>
       <Folder Include="usync\" />
-      <Folder Include="Views\Partials\" />
       <Folder Include="wwwroot\bundles\" />
     </ItemGroup>
 
@@ -77,14 +77,14 @@
     </ItemGroup>
 
     <Choose>
-        <When Condition="'$(Configuration)' == 'Tambien Live'">
+        <When Condition="'$(Configuration)' == 'Portfolio Live'">
             <ItemGroup>
                 <None Include="appsettings.Live.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
                 <None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
                 <Content Remove="appsettings.*.json;appsettings.json" />
             </ItemGroup>
         </When>
-        <When Condition="'$(Configuration)' == 'Tambien Test'">
+        <When Condition="'$(Configuration)' == 'Portfolio Test'">
             <ItemGroup>
                 <None Include="appsettings.Test.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
                 <None Include="appsettings.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />

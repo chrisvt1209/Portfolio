@@ -1,0 +1,47 @@
+﻿@using Portfolio.Infrastructure.Extensions
+@using Portfolio.Models.Umbraco
+@inherits UmbracoViewPage<ProjectsViewModel>
+@{
+    const string placeholderImage = "https://placehold.co/960x640/111611/39ff88?text=Geen+Preview+Beschikbaar";
+    var index = -1;
+}
+<section class="content-section" id="projects">
+    <div class="section-label">
+        <span>03.</span>
+        <p>@Model.Name</p>
+    </div>
+
+    <div class="section-body showcase-stack">
+        @foreach (var item in Model.ProjectsBlockList!)
+        {
+            if (item.Content is not ProjectItem projectItem)
+            {
+                continue;
+            }
+
+            index++;
+            var imageUrl = projectItem.Projectimages?.FirstOrDefault()?.Url();
+
+            <article class="showcase-card@(index % 2 == 1 ? " showcase-card-reverse" : "")">
+                <div class="showcase-copy">
+                    <p class="panel-label">@projectItem.TxtEyebrow</p>
+                    <h3>@projectItem.TxtTitle</h3>
+                    @projectItem.TxtDescription
+                    <ul class="tag-list">
+                        @foreach (var tag in projectItem.ProjectTags.SplitLines())
+                        {
+                            <li class="underline">@tag</li>
+                        }
+                    </ul>
+                </div>
+
+                <div class="showcase-visual">
+                    <figure class="project-placeholder">
+                        <img src="@(string.IsNullOrWhiteSpace(imageUrl) ? placeholderImage : imageUrl)"
+                             alt="@(string.IsNullOrWhiteSpace(imageUrl) ? $"Placeholder preview for {projectItem.TxtTitle}" : projectItem.TxtTitle)">
+                    </figure>
+                </div>
+            </article>
+        }
+    </div>
+</section>

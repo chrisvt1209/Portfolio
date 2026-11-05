@@ -1,0 +1,65 @@
+﻿@model Portfolio.Models.Umbraco.Settings
+@{
+    var mailLink = $"mailto:{Model.Email}";
+    var familyLink = Model.FamilyWebsiteUrl?.FirstOrDefault();
+    var socials = Model.Socials ?? [];
+}
+<div class="side-rail side-rail-left d-none d-lg-flex" aria-label="Social links">
+    <div class="side-rail-links d-flex flex-column align-items-center gap-3">
+        @foreach (var social in socials)
+        {
+            <a class="footer-icon" href="@social.Url" target="_blank" rel="noreferrer"
+               aria-label="@social.Name">
+                @if (IconHelper.GetSocialPath(social.Network) is { } iconPath)
+                {
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="@iconPath"/>
+                    </svg>
+                }
+                else
+                {
+                    <i class="fa-brands fa-@social.Network" aria-hidden="true"></i>
+                }
+            </a>
+        }
+    </div>
+    <span class="side-rail-line" aria-hidden="true"></span>
+</div>
+
+<div class="side-rail side-rail-right d-none d-lg-flex" aria-label="Email address">
+    <a class="side-email" href="@mailLink">@Model.Email</a>
+    <span class="side-rail-line" aria-hidden="true"></span>
+</div>
+
+<footer class="container-fluid footer-shell px-0">
+    <div class="site-footer d-flex flex-column align-items-center justify-content-center gap-3 py-4">
+        @if (familyLink is not null)
+        {
+            <a class="footer-link" href="@familyLink.Url" target="@(familyLink.Target ?? "_blank")" rel="noreferrer">
+                @familyLink.Name
+            </a>
+        }
+
+        <div class="footer-mobile d-flex d-lg-none flex-column align-items-center gap-3">
+            <div class="footer-social d-flex align-items-center gap-3">
+                @foreach (var social in socials)
+                {
+                    <a class="footer-icon" href="@social.Url" target="_blank" rel="noreferrer"
+                       aria-label="@social.Name">
+                        @if (IconHelper.GetSocialPath(social.Network) is { } iconPath)
+                        {
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="@iconPath"/>
+                            </svg>
+                        }
+                        else
+                        {
+                            <i class="fa-brands fa-@social.Network" aria-hidden="true"></i>
+                        }
+                    </a>
+                }
+            </div>
+            <a class="footer-email" href="@mailLink">@Model.Email</a>
+        </div>
+    </div>
+</footer>

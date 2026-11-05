@@ -54,6 +54,7 @@ public static partial class ServicesInitializer
 
         services.AddExceptional(builder.Configuration.GetSection("Exceptional"));
         services.AddExceptionHandler<GlobalExceptionHandler>();
+        services.AddProblemDetails();
         services.AddResponseCompression();
         return builder;
     }

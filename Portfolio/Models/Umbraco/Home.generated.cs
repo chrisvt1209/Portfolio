@@ -50,6 +50,62 @@ namespace Portfolio.Models.Umbraco
 		// properties
 
 		///<summary>
+		/// Over mij
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("btnAboutCta")]
+		public virtual string BtnAboutCta => this.Value<string>(_publishedValueFallback, "btnAboutCta");
+
+		///<summary>
+		/// Bekijk projecten
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("btnSeeProjectsCta")]
+		public virtual string BtnSeeProjectsCta => this.Value<string>(_publishedValueFallback, "btnSeeProjectsCta");
+
+		///<summary>
+		/// Hero meta
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("heroMeta")]
+		public virtual string HeroMeta => this.Value<string>(_publishedValueFallback, "heroMeta");
+
+		///<summary>
+		/// Description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString TxtDescription => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "txtDescription");
+
+		///<summary>
+		/// Function
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtFunction")]
+		public virtual string TxtFunction => this.Value<string>(_publishedValueFallback, "txtFunction");
+
+		///<summary>
+		/// Eyebrow
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtHeroEyebrow")]
+		public virtual string TxtHeroEyebrow => this.Value<string>(_publishedValueFallback, "txtHeroEyebrow");
+
+		///<summary>
+		/// Name
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtName")]
+		public virtual string TxtName => this.Value<string>(_publishedValueFallback, "txtName");
+
+		///<summary>
 		/// Pagina titel
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]

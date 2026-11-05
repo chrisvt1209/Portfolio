@@ -1,0 +1,35 @@
+﻿@using Portfolio.Infrastructure.Extensions
+@using Portfolio.Models.Umbraco
+@inherits UmbracoViewPage<MoreProjectsViewModel>
+
+<section class="content-section" id="archive">
+    <div class="section-label">
+        <span>04.</span>
+        <p>@Model.Name</p>
+    </div>
+
+    <div class="section-body">
+        <div class="archive-grid">
+            @foreach (var item in Model.MoreProjectsBlockList!)
+            {
+                if (item.Content is not ExtraProjectItem archive)
+                {
+                    continue;
+                }
+                <article class="archive-card">
+                    <span class="archive-icon"><i class="@IconHelper.GetFontAwesomeClass(archive.Icon)" aria-hidden="true"></i></span>
+                    <p class="panel-label">@archive.TxtEyebrow</p>
+                    <h3>@archive.TxtTitle</h3>
+                    @archive.TxtDescription
+
+                    <ul class="tag-list">
+                        @foreach (var tag in archive.Tags.SplitLines())
+                        {
+                            <li>@tag</li>
+                        }
+                    </ul>
+                </article>
+            }
+        </div>
+    </div>
+</section>

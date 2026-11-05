@@ -1,0 +1,31 @@
+﻿@using Portfolio.Models.Umbraco;
+@inherits UmbracoViewPage<HomeViewModel>
+@{
+	var sectionActions = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+	{
+		[About.ModelTypeAlias] = "GetAbout",
+		[Experience.ModelTypeAlias] = "GetExperience",
+		[Projects.ModelTypeAlias] = "GetProjects",
+		[MoreProjects.ModelTypeAlias] = "GetMoreProjects",
+	};
+
+	var settings = await Content.GetSettingsAsync();
+}
+
+<partial name="~/Views/Partials/_Header.cshtml" model="Model"/>
+
+<div class="page-shell">
+	<main>
+		<partial name="~/Views/Partials/_Hero.cshtml" model="Model" />
+		@foreach (var child in Model.Children())
+		{
+			if (sectionActions.TryGetValue(child.ContentType.Alias, out var action))
+			{
+				var url = Url.Content($"~/umbraco/surface/SectionSurface/{action}");
+				<div class="section-slot" data-section="@child.ContentType.Alias" data-url="@url"></div>
+			}
+		}
+	</main>
+</div>
+
+<partial name="~/Views/Partials/_Footer.cshtml" model="@settings"/>

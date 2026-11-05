@@ -1,0 +1,32 @@
+﻿@using Portfolio.Models.Umbraco
+@inherits UmbracoViewPage<ExperienceViewModel>
+
+<section class="content-section" id="experience">
+    <div class="section-label">
+        <span>02.</span>
+        <p>@Model.Name</p>
+    </div>
+
+    <div class="section-body">
+        <div class="experience-rail">
+            @{ var index = -1; }
+            @foreach (var item in Model.ExperiencesBlockList!)
+            {
+                if (item.Content is not ExperienceItem experienceItem)
+                {
+                    continue;
+                }
+
+                index++;
+                <article class="experience-item@(index % 2 == 1 ? " experience-item-offset" : "")">
+                    <span class="experience-year">@experienceItem.TxtYearRange</span>
+                    <div class="experience-card">
+                        <p class="panel-label">@experienceItem.TxtEyebrow</p>
+                        <h3>@experienceItem.TxtTitle</h3>
+                        @experienceItem.TxtDescription
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,30 @@
+﻿@inherits UmbracoViewPage<HomeViewModel>
+@{
+    var settings = await Content.GetSettingsAsync();
+    var metaLines = (Model.HeroMeta ?? string.Empty)
+        .Replace("\r\n", "\n")
+        .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+}
+
+<section class="hero" id="top">
+    <div class="hero-copy">
+        <p class="eyebrow">@Model.TxtHeroEyebrow</p>
+        <h1 class="hero-name" data-text="@Model.TxtName." aria-label="@Model.TxtName.">
+            @Model.TxtName.
+        </h1>
+        <h2 class="hero-role">@Model.TxtFunction</h2>
+        <div class="hero-text">@Model.TxtDescription</div>
+
+        <div class="hero-actions d-flex flex-wrap gap-3">
+            <a class="button button-primary" href="#about">@Model.BtnAboutCta</a>
+            <a class="button button-secondary" href="#projects">@Model.BtnSeeProjectsCta</a>
+        </div>
+
+        <ul class="hero-meta" aria-label="Kernpunten">
+            @foreach (var tag in metaLines)
+            {
+                <li>@tag</li>
+            }
+        </ul>
+    </div>
+</section>

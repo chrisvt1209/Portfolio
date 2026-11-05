@@ -1,0 +1,26 @@
+﻿@inherits UmbracoViewPage<AboutViewModel>
+
+<section class="content-section" id="about">
+    <div class="section-label">
+        <span>01.</span>
+        <p>@Model.Name</p>
+    </div>
+
+    <div class="section-body section-body-split">
+        <div class="text-block">
+            <h2>@Model.TxtHeader</h2>
+            @Html.Raw(Model.Body)
+            
+            <ul class="tag-list">
+                @foreach (var tag in Model.Tags ?? [])
+                {
+                    <li class="underline">@tag</li>
+                }
+            </ul>
+        </div>
+
+        <figure class="about-portrait">
+            <img src="@Model.ProfileImage?.Url()" alt="Chris van Tiggelen">
+        </figure>
+    </div>
+</section>

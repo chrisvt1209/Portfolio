@@ -31,18 +31,23 @@ public static class ApplicationBuilderExtensions
                         builder.AddStyleSrc()
                             .Self()
                             .From("https://*.fontawesome.com")
+                            .From("https://fonts.googleapis.com")
+                            .From("https://cdnjs.cloudflare.com")
                             .WithNonce();
 
                         builder.AddImgSrc()
                             .Self()
-                            .From("data:");
+                            .From("data:")
+                            .From("https://placehold.co");
 
                         builder.AddFormAction()
                             .Self();
 
                         builder.AddFontSrc()
                             .Self()
-                            .From("https://*.fontawesome.com");
+                            .From("https://*.fontawesome.com")
+                            .From("https://fonts.gstatic.com")
+                            .From("https://cdnjs.cloudflare.com");
 
 
                         var connectSrc = builder.AddConnectSrc()

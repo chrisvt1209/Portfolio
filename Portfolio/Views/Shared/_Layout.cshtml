@@ -1,11 +1,12 @@
-﻿@* @using RijksMuseum.Models.Umbraco *@
+﻿@using NetEscapades.AspNetCore.SecurityHeaders
+@using Portfolio.Models.Umbraco
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IPublishedContent>
 @{
     var langCode = VariationContextAccessor.VariationContext?.Culture;
     var languages = await LanguageService.GetAllAsync();
-    // var home = await Content.GetHomeAsync();
-    // var settings = await Content.GetSettingsAsync();
-    // var currentPage = Model as IPage;
+    var home = await Content.GetHomeAsync();
+    var settings = await Content.GetSettingsAsync();
+    var currentPage = Model as IPage;
 }
 
 <!DOCTYPE html>
@@ -15,29 +16,63 @@
     <meta content="width=device-width, initial-scale=1"
           name="viewport">
     
-    @* <title>@currentPage?.PageTitle</title> *@
+    <title>@currentPage?.PageTitle | @settings?.TxtFullName</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     @foreach (var language in languages)
     {
         if (language.IsoCode != langCode)
         {
-            <link rel="alternate" hreflang="@language.IsoCode" href="@Model.Url(culture: @language.IsoCode, mode: UrlMode.Absolute)">
+            <link rel="alternate" hreflang="@language.IsoCode" href="@Model.Url(culture: language.IsoCode, mode: UrlMode.Absolute)">
         }
     }
     <link rel="alternate" hreflang="x-default" href="@(Model.Url(culture: "en-US", mode: UrlMode.Absolute))" />
     <link rel="canonical" href="@(Model.Url(mode: UrlMode.Absolute))" />
-    @* <link asp-add-nonce rel="stylesheet" href="/bundles/scss/shared.css" asp-append-version="true" /> *@
+    <link nonce="@ViewContext.HttpContext.GetNonce()" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link nonce="@ViewContext.HttpContext.GetNonce()" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link nonce="@ViewContext.HttpContext.GetNonce()"
+          href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap"
+          rel="stylesheet" />
+    
+    <link asp-add-nonce rel="stylesheet" href="/bundles/scss/styles.css" asp-append-version="true" />
     @await RenderSectionAsync("Style", false)
 </head>
 <body>
+    <div class="site-preloader" id="site-preloader" aria-hidden="true">
+        <div class="site-preloader-backdrop"></div>
+        <div class="site-preloader-shell">
+            <p class="panel-label">System boot</p>
+            <div class="site-preloader-terminal">
+                <div class="site-preloader-chrome">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="site-preloader-body">
+                    <p class="site-preloader-line is-muted">initializing portfolio.session</p>
+                    <p class="site-preloader-line is-main"><span class="site-preloader-prompt">&gt;</span> cvt / portfolio</p>
+                    <p class="site-preloader-line is-accent">loading about, experience, projects</p>
+                    <div class="site-preloader-meter">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="particle-field" aria-hidden="true"></div>
     @RenderBody()
 
+    <button class="scroll-top" type="button" aria-label="Scroll back to top">
+        <span></span>
+    </button>
     <script asp-add-nonce>
-        const CURRENT_LANG = '@Html.Raw(langCode)';
-        const DATE_FORMAT = "dd-MM-yyyy";
-        const HOME_URL = '/';
-    </script>
-    @* <script asp-add-nonce src="/bundles/js/main.js" asp-append-version="true"></script> *@
+            const CURRENT_LANG = '@Html.Raw(langCode)';
+            const DATE_FORMAT = "dd-MM-yyyy";
+            const HOME_URL = '@Html.Raw(home?.Url())';
+        </script>
+    <script asp-add-nonce type="module" src="/bundles/js/main.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", false)
-    <Esbuild-Script />
+    <Esbuild-Script nonce="@ViewContext.HttpContext.GetNonce()"/>
 </body>
 </html>

@@ -4,6 +4,15 @@ namespace Portfolio.Infrastructure.Extensions;
 
 public static class StringExtensions
 {
+    /// <summary>
+    /// Splits a textarea value into trimmed, non-empty lines.
+    /// </summary>
+    public static string[] SplitLines(this string? text)
+    {
+        return (text ?? string.Empty)
+            .Split(["\r\n", "\n", "\r"], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+    }
+
     public static bool TrimCaseInsensitiveEquals(this string? str, string? value)
     {
         return str != null && str.Trim().Equals(value?.Trim(), StringComparison.OrdinalIgnoreCase);

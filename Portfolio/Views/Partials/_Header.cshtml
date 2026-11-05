@@ -1,0 +1,60 @@
+﻿@using Portfolio.Models.Umbraco
+@inherits UmbracoViewPage<HomeViewModel>
+@{
+    var settings = await Content.GetSettingsAsync();
+    var cvUrl = "/uploads/CV Chris van Tiggelen.pdf";
+    var sectionIds = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+    {
+        [About.ModelTypeAlias] = "about",
+        [Experience.ModelTypeAlias] = "experience",
+        [Projects.ModelTypeAlias] = "projects",
+        [MoreProjects.ModelTypeAlias] = "archive",
+    };
+}
+
+<div class="container-fluid header-shell px-0">
+        <header class="site-header d-flex align-items-center px-4 py-3">
+            <a class="brand" href="@Model.Url()">
+                <span class="brand-mark brand-mark-terminal" aria-hidden="true">
+                    <span class="brand-prompt">&gt;</span>
+                    <span class="brand-cursor">_</span>
+                    <span class="brand-text" data-text="@settings?.TxtInitials">@settings?.TxtInitials</span>
+                </span>
+            </a>
+
+            <nav class="site-nav d-flex align-items-center justify-content-center gap-4 position-absolute start-50 translate-middle-x"
+                 id="site-nav" aria-label="Hoofdnavigatie">
+                @foreach (var item in Model.Children())
+                {
+                    if (item.Value<bool>("umbracoNaviHide") || !sectionIds.TryGetValue(item.ContentType.Alias, out var anchor))
+                    {
+                        continue;
+                    }
+
+                    <a class="underline" href="#@anchor">@item.Name</a>
+                }
+                <a class="header-cta header-cta-mobile d-lg-none" href="@cvUrl" download>@settings?.BtnDownloadCv</a>
+            </nav>
+
+            <div class="header-actions d-flex align-items-center gap-3 ms-auto">
+                <a class="header-cta d-none d-lg-inline-flex" href="@cvUrl"
+                   download>@settings?.BtnDownloadCv</a>
+                <!-- <div class="dropdown d-none d-lg-block">
+                    <button class="header-select dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Nederlands
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item active" href="#">Nederlands</a></li>
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                    </ul>
+                </div> -->
+                <button class="menu-toggle d-inline-flex d-lg-none align-items-center justify-content-center"
+                    type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+    </div>
