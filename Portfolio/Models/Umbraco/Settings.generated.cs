@@ -82,6 +82,14 @@ namespace Portfolio.Models.Umbraco
 		public virtual global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.SocialLink> Socials => this.Value<global::System.Collections.Generic.IEnumerable<global::Umbraco.Cms.Core.Models.PublishedContent.SocialLink>>(_publishedValueFallback, "socials");
 
 		///<summary>
+		/// Bekijk ook
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("txtAlsoView")]
+		public virtual string TxtAlsoView => this.Value<string>(_publishedValueFallback, "txtAlsoView");
+
+		///<summary>
 		/// Full name: Wordt gebruikt voor pagina titel suffix
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]

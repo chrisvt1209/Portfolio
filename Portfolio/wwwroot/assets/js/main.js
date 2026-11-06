@@ -1,4 +1,6 @@
-﻿document.addEventListener("DOMContentLoaded", () => {
+﻿import "./carousel.js";
+
+document.addEventListener("DOMContentLoaded", () => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const headerShell = document.querySelector(".header-shell");
     const footerShell = document.querySelector(".footer-shell");
@@ -114,7 +116,7 @@
         const themeButton = themeToggle.querySelector(".theme-toggle-button");
         const themeMenu = themeToggle.querySelector(".theme-menu");
         const themeOptions = Array.from(themeMenu.querySelectorAll(".theme-option"));
-        const defaultTheme = "green";
+        const defaultTheme = "teal";
 
         const setMenuOpen = (isOpen) => {
             themeMenu.classList.toggle("is-open", isOpen);
@@ -161,6 +163,16 @@
             if (event.key === "Escape") {
                 setMenuOpen(false);
             }
+        });
+    }
+
+    if (window.matchMedia("(hover: hover)").matches && !prefersReducedMotion) {
+        document.querySelectorAll(".archive-card").forEach((card) => {
+            card.addEventListener("pointermove", (event) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+                card.style.setProperty("--my", `${event.clientY - rect.top}px`);
+            });
         });
     }
 

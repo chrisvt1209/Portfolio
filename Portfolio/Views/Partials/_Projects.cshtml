@@ -26,7 +26,10 @@
             }
 
             index++;
-            var imageUrl = projectItem.Projectimages?.FirstOrDefault()?.Url();
+            var imageUrls = (projectItem.Projectimages ?? [])
+                .Select(image => image.Url())
+                .Where(url => !string.IsNullOrWhiteSpace(url))
+                .ToList();
 
             <article class="showcase-card@(index % 2 == 1 ? " showcase-card-reverse" : "")">
                 <div class="showcase-copy">
@@ -42,8 +45,8 @@
                 </div>
 
                 <div class="showcase-visual">
-                    <figure class="project-placeholder">
-                        @if (string.IsNullOrWhiteSpace(imageUrl))
+                    <figure class="project-placeholder@(imageUrls.Count > 0 ? " project-gallery" : "")" @(imageUrls.Count > 0 ? "data-gallery" : "")>
+                        @if (imageUrls.Count == 0)
                         {
                             <div class="project-placeholder-empty" role="img" aria-label="@projectItem.TxtTitle">
                                 <span>Geen Preview Beschikbaar</span>
@@ -51,7 +54,16 @@
                         }
                         else
                         {
-                            <img src="@imageUrl" alt="@projectItem.TxtTitle">
+                            <div class="gallery-track">
+                                @for (var i = 0; i < imageUrls.Count; i++)
+                                {
+                                    <button type="button" class="gallery-slide" data-full="@imageUrls[i]"
+                                            aria-label="Vergroot afbeelding @(i + 1) van @imageUrls.Count">
+                                        <img src="@imageUrls[i]" loading="lazy" decoding="async"
+                                             alt="@projectItem.TxtTitle@(imageUrls.Count > 1 ? $" ({i + 1}/{imageUrls.Count})" : "")">
+                                    </button>
+                                }
+                            </div>
                         }
                     </figure>
                 </div>
