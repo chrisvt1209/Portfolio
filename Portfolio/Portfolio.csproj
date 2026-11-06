@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -33,6 +33,10 @@
 
     <ItemGroup>
         <Content Include="App_Plugins\Client\umbraco-package.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Resources\umbraco-icons.json" LogicalName="umbraco-icons.json" />
     </ItemGroup>
 
     <ItemGroup>

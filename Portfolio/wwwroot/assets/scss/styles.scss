@@ -714,9 +714,13 @@ ul {
 }
 
 .section-label {
+  position: sticky;
+  top: 120px;
+  align-self: start;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 14px;
   padding-top: 16px;
   font-size: 0.78rem;
   letter-spacing: 0.14em;
@@ -729,10 +733,28 @@ ul {
   line-height: 1;
 }
 
-.section-label span {
-  display: inline-block;
+.section-icon {
+  display: inline-flex;
   color: var(--accent);
   line-height: 1;
+}
+
+.section-label::after {
+  content: "";
+  order: 3;
+  width: 28px;
+  height: 1px;
+  margin-top: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.section-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.section-icon:empty {
+  display: none;
 }
 
 .section-body {
@@ -824,8 +846,9 @@ ul {
   opacity: 1;
 }
 
-.archive-icon i {
-  font-size: 1.5rem;
+.archive-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .archive-icon {
@@ -1364,10 +1387,15 @@ ul {
   }
 
   .section-label {
+    position: static;
     flex-direction: row;
     align-items: center;
     padding-top: 0;
     gap: 10px;
+  }
+
+  .section-label::after {
+    display: none;
   }
 
 }

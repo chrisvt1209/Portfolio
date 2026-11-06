@@ -27,6 +27,11 @@ namespace Portfolio.Models.Umbraco
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		string PageTitle { get; }
 
+		/// <summary>Icon</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string SectionIcon { get; }
+
 		/// <summary>Verbergen</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
 		bool UmbracoNaviHide { get; }
@@ -75,6 +80,19 @@ namespace Portfolio.Models.Umbraco
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public static string GetPageTitle(IPage that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "pageTitle");
+
+		///<summary>
+		/// Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionIcon")]
+		public virtual string SectionIcon => GetSectionIcon(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Icon</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetSectionIcon(IPage that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "sectionIcon");
 
 		///<summary>
 		/// Verbergen

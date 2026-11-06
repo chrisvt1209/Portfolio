@@ -1,10 +1,8 @@
-@using Microsoft.AspNetCore.Mvc.ViewFeatures
-@using Portfolio.Models.Umbraco
+﻿@using Portfolio.Models.Umbraco
 @inherits UmbracoViewPage<HomeViewModel>
 @inject IPublishedValueFallback PublishedValueFallback
 @{
 	var settings = await Content.GetSettingsModelAsync();
-	var position = 0;
 }
 
 <partial name="~/Views/Partials/_Header.cshtml" model="Model"/>
@@ -16,10 +14,10 @@
 		{
 			(string PartialName, object Model)? section = child.ContentType.Alias switch
 			{
-				var alias when alias == About.ModelTypeAlias => ("_About", new AboutViewModel(child, PublishedValueFallback)),
-				var alias when alias == Experience.ModelTypeAlias => ("_Experience", new ExperienceViewModel(child, PublishedValueFallback)),
-				var alias when alias == Projects.ModelTypeAlias => ("_Projects", new ProjectsViewModel(child, PublishedValueFallback)),
-				var alias when alias == MoreProjects.ModelTypeAlias => ("_MoreProjects", new MoreProjectsViewModel(child, PublishedValueFallback)),
+				About.ModelTypeAlias => ("_About", new AboutViewModel(child, PublishedValueFallback)),
+				Experience.ModelTypeAlias => ("_Experience", new ExperienceViewModel(child, PublishedValueFallback)),
+				Projects.ModelTypeAlias => ("_Projects", new ProjectsViewModel(child, PublishedValueFallback)),
+				MoreProjects.ModelTypeAlias => ("_MoreProjects", new MoreProjectsViewModel(child, PublishedValueFallback)),
 				_ => null
 			};
 
@@ -28,11 +26,8 @@
 				continue;
 			}
 
-			position++;
-			var sectionViewData = new ViewDataDictionary(ViewData) { ["SectionNumber"] = $"{position:00}." };
-
 			<div class="section-slot is-loaded" data-section="@child.ContentType.Alias" data-title="@((child as IPage)?.PageTitle)">
-				<partial name="@($"~/Views/Partials/{section.Value.PartialName}.cshtml")" model="section.Value.Model" view-data="sectionViewData" />
+				<partial name="@($"~/Views/Partials/{section.Value.PartialName}.cshtml")" model="section.Value.Model" />
 			</div>
 		}
 	</main>

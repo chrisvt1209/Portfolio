@@ -82,6 +82,14 @@ namespace Portfolio.Models.Umbraco
 		public virtual string PageTitle => global::Portfolio.Models.Umbraco.Page.GetPageTitle(this, _publishedValueFallback);
 
 		///<summary>
+		/// Icon
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("sectionIcon")]
+		public virtual string SectionIcon => global::Portfolio.Models.Umbraco.Page.GetSectionIcon(this, _publishedValueFallback);
+
+		///<summary>
 		/// Verbergen
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "18.3.0+ee1861c")]
